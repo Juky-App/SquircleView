@@ -8,7 +8,7 @@
   <a href="https://opensource.org/licenses/MIT"><img alt="License" src="https://img.shields.io/badge/License-MIT-blue.svg"/></a>
   <a href="https://android-arsenal.com/api?level=23"><img alt="API" src="https://img.shields.io/badge/API-23%2B-brightgreen.svg?style=flat"/></a>
   <a><img alt="Release version" src="https://img.shields.io/github/v/release/Juky-App/SquircleView"/></a>
-  <a><img alt="Build status" src="https://img.shields.io/github/workflow/status/Juky-App/SquircleView/build"/></a>
+  <a><img alt="Build status" src="https://img.shields.io/github/workflow/status/Juky-App/SquircleView/release"/></a>
   <a><img alt="Contributors" src="https://img.shields.io/github/contributors/Juky-App/SquircleView"/></a>
   <a><img alt="Stars" src="https://img.shields.io/github/stars/Juky-App/SquircleView"/></a>
   <a><img alt="Issues" src="https://img.shields.io/github/issues/Juky-App/SquircleView"/></a>
@@ -45,9 +45,9 @@ Different kinds of buttons, layouts and images you can create
 
 ## How to use
 
-<a><img alt="Maven Central" src="https://img.shields.io/maven-central/v/3/3"/></a>
-<a><img alt="Maven" src="https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fcom%2Fgoogle%2Fcode%2Fgson%2Fgson%2Fmaven-metadata.xml"/></a>
-<a><img alt="Jitpack" src="https://img.shields.io/jitpack/v/github/jitpack/maven-simple"/></a>
+<a><img alt="Maven Central" src="https://img.shields.io/maven-central/v/app.juky/squircleview"/></a>
+<a><img alt="Maven" src="https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fcom%2Fapp%2Fjuky%2Fsquircleview%2Fmaven-metadata.xml"/></a>
+<!--<a><img alt="Jitpack" src="https://img.shields.io/jitpack/v/github/jitpack/maven-simple"/></a>-->
 
 Add the Maven repository to your root build.gradle file:
 

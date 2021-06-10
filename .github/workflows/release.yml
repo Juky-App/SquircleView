@@ -32,21 +32,21 @@ jobs:
         working-directory: ./
         run: chmod +x gradlew
 
-      #- name: Assemble SquircleView AAR
-      #  if: ${{ !endsWith(github.event.release.tag_name, 'SNAPSHOT') }}
-      #  working-directory: ./
-      #  run: ./gradlew library:assemble
+      - name: Assemble SquircleView AAR
+        if: ${{ !endsWith(github.event.release.tag_name, 'SNAPSHOT') }}
+        working-directory: ./
+        run: ./gradlew library:assemble
 
-      #- name: Upload SquircleView's AAR to release
-      #  if: ${{ !endsWith(github.event.release.tag_name, 'SNAPSHOT') }}
-      #  uses: actions/upload-release-asset@v1.0.2
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #  with:
-      #    upload_url: ${{ github.event.release.upload_url }}
-      #    asset_name: "SquircleView.aar"
-      #    asset_path: ./library/build/outputs/aar/SquircleView-release.aar
-      #    asset_content_type: application/octet-stream
+      - name: Upload SquircleView's AAR to release
+        if: ${{ !endsWith(github.event.release.tag_name, 'SNAPSHOT') }}
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_name: "SquircleView.aar"
+          asset_path: ./library/build/outputs/aar/SquircleView-release.aar
+          asset_content_type: application/octet-stream
 
       - name: Build and publish SDK to Maven
         working-directory: ./
@@ -57,7 +57,7 @@ jobs:
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
           PGP_KEY_CONTENTS: ${{ secrets.PGP_KEY_CONTENTS }}
         run: |
-          ./gradlew publishReleasePublicationToSonatypeRepository
+          ./gradlew publishReleasePublicationToSonatypeRepository closeAndReleaseSonatypeStagingRepository
       - name: Cleanup Gradle Cache
         # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
         # Restoring these files from a GitHub Actions cache might cause problems for future builds.
