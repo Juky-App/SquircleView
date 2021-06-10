@@ -18,7 +18,7 @@
 
 Different kinds of buttons, layouts and images you can create
 <p>
-<img src="./assets/screenshots.png" alt="Icon" height="250px">
+<img src="./assets/screenshots.png" alt="Icon">
 </p>
 
 ---
