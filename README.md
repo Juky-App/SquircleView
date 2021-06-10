@@ -206,7 +206,7 @@ Check out the [CONTRIBUTING.md](CONTRIBUTING.md) file to know more
         <br />
         <a href="https://github.com/Juky-App/SquircleView/commits?author=DemianD" title="Code">💻</a>
         <a href="https://github.com/Juky-App/SquircleView/commits?author=nielssg" title="Documentation">📖</a>
-        <a title="Maintenance">🚧</a>
+        <a href="#" title="Maintenance">🚧</a>
     </td>
     <td align="center">
         <a href="https://github.com/ThomasBakker">
@@ -226,7 +226,7 @@ Check out the [CONTRIBUTING.md](CONTRIBUTING.md) file to know more
 
 ## Changelog
 
-- V1.0.0 (1 july 2021): Initial release
+- V0.0.1 (10 june 2021): Initial release
 
 ## Attribution
 
