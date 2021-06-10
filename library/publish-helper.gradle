@@ -1,0 +1,109 @@
+apply plugin: "maven-publish"
+apply plugin: "signing"
+
+task androidJavadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    android.libraryVariants.all { variant ->
+        if (variant.name == "release") {
+            owner.classpath += variant.javaCompileProvider.get().classpath
+        }
+    }
+
+    exclude "**/R.html", "**/R.*.html", "**/index.html"
+    options.encoding "utf-8"
+    options {
+        addStringOption "docencoding", "utf-8"
+        addStringOption "charset", "utf-8"
+        links "https://docs.oracle.com/javase/7/docs/api/"
+        links "https://d.android.com/reference"
+        links "https://developer.android.com/reference/androidx/"
+    }
+}
+
+task androidJavadocJar(type: Jar, dependsOn: androidJavadoc) {
+    archiveClassifier.set("javadoc")
+    from androidJavadoc.destinationDir
+
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+}
+
+task javaSourcesJar(type: Jar) {
+    archiveClassifier.set("sources")
+    from android.sourceSets.main.java.srcDirs
+
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+}
+
+tasks.withType(Javadoc).all {
+    enabled = false
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                artifact androidJavadocJar
+                artifact javaSourcesJar
+
+                groupId "app.juky"
+                artifactId "squircleview"
+                version android.defaultConfig.versionName
+                pom {
+                    packaging "aar"
+                    name = "SquircleView"
+                    description = "SquircleView is a library which provides you with Squircle views to use for buttons, views, etc."
+                    url = "https://github.com/Juky-App/SquircleView-Prerelease"
+                    licenses {
+                        license {
+                            name = "MIT"
+                            url = "https://github.com/Juky-App/SquircleView-Prerelease/blob/main/LICENSE.md"
+                        }
+                    }
+                    scm {
+                        connection = "scm:https://github.com/Juky-App/SquircleView-Prerelease.git"
+                        url = "https://github.com/Juky-App/SquircleView-Prerelease"
+                        developerConnection = "scm:git:ssh://github.com/Juky-App/SquircleView-Prerelease.git"
+                    }
+                    developers {
+                        developer {
+                            id = "juky"
+                            name = "Juky"
+                            email = "development@juky.app"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+
+        }
+
+        /*repositories {
+            maven {
+                name = "sonatype"
+
+                def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+                url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+                credentials {
+                    username ossrhUsername
+                    password ossrhPassword
+                }
+            }
+        }*/
+    }
+}
+signing {
+    sign publishing.publications
+}
