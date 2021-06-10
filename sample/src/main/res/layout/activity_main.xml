@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/squircleRowLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <app.juky.squircleview.views.SquircleConstraintLayout
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_margin="8dp"
+            android:padding="16dp"
+            app:squircle_gradient_end_color="#415FFF"
+            app:squircle_gradient_start_color="#5BA7FF"
+            app:squircle_ripple_enabled="false"
+            app:squircle_shadow_elevation="2dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_emoji"
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </app.juky.squircleview.views.SquircleConstraintLayout>
+
+        <app.juky.squircleview.views.SquircleConstraintLayout
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_margin="8dp"
+            android:padding="16dp"
+            app:squircle_gradient_drawable="@drawable/gradient"
+            app:squircle_shadow_elevation="2dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_people"
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </app.juky.squircleview.views.SquircleConstraintLayout>
+
+        <app.juky.squircleview.views.SquircleConstraintLayout
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_margin="8dp"
+            android:padding="16dp"
+            app:squircle_border_color="#AE553A"
+            app:squircle_border_width="8dp"
+            app:squircle_gradient_end_color="#C739EF"
+            app:squircle_gradient_start_color="#E0ED24"
+            app:squircle_shadow_elevation="2dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_close"
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </app.juky.squircleview.views.SquircleConstraintLayout>
+
+        <app.juky.squircleview.views.SquircleConstraintLayout
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_margin="8dp"
+            android:padding="16dp"
+            app:squircle_gradient_direction="bottom_left_to_top_right"
+            app:squircle_gradient_end_color="#0EBA11"
+            app:squircle_gradient_start_color="#FFBB0D"
+            app:squircle_shadow_elevation="0dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_star"
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </app.juky.squircleview.views.SquircleConstraintLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <app.juky.squircleview.views.SquircleButton
+        android:id="@+id/normalButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:text="Normal button"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/squircleRowLayout"
+        app:squircle_background_color="@color/purple_200"
+        app:squircle_gradient_end_color="#415FFF"
+        app:squircle_gradient_start_color="#5BA7FF"
+        app:squircle_shadow_elevation="2dp" />
+
+    <app.juky.squircleview.views.SquircleButton
+        android:id="@+id/normalNoGradientButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:text="Normal button no gradient"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/normalButton"
+        app:squircle_background_color="@color/teal_700"
+        app:squircle_shadow_elevation="2dp" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/normalNoGradientButton">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <app.juky.squircleview.views.SquircleImageView
+                android:id="@+id/imageButton"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:squircle_background_color="@color/purple_200"
+                app:squircle_background_image="@drawable/first_image"
+                app:squircle_border_color="@color/black"
+                app:squircle_border_width="4dp"
+                app:squircle_gradient_drawable="@drawable/gradient" />
+
+            <app.juky.squircleview.views.SquircleButton
+                android:id="@+id/normalButtonWithImage"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageButton"
+                app:squircle_background_color="@color/purple_200"
+                app:squircle_background_image="@drawable/third_image"
+                app:squircle_border_color="@color/white"
+                app:squircle_border_width="4dp"
+                app:squircle_gradient_end_color="#FF00FF"
+                app:squircle_gradient_start_color="#C6A116"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <app.juky.squircleview.views.SquircleButton
+            android:id="@+id/verticalButton"
+            android:layout_width="80dp"
+            android:layout_height="270dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/normalButtonWithImage"
+            app:squircle_border_color="@color/white"
+            app:squircle_border_width="4dp"
+            app:squircle_gradient_direction="right_to_left"
+            app:squircle_gradient_end_color="#FF00FF"
+            app:squircle_gradient_start_color="#C6A116" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

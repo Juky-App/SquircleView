@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="88" height="88" fill="none">
+    <g filter="url(#filter0_ddi)">
+        <rect width="64" height="64" x="15" y="6" fill="url(#paint0_linear)" rx="18" />
+    </g>
+    <path fill="#fff"
+        d="M55.4 34.22l2.76-4.77c.24-.465.06-1.035-.39-1.275-.435-.225-.975-.09-1.245.33l-2.82 4.86c-4.29-1.815-9.12-1.815-13.41 0l-2.82-4.86c-.285-.435-.87-.57-1.305-.3-.42.27-.555.81-.33 1.245l2.76 4.77c-4.65 2.655-7.68 7.44-8.1 12.78h33c-.42-5.34-3.45-10.125-8.1-12.78zm-15.9 8.655c-1.035 0-1.875-.84-1.875-1.875 0-1.035.84-1.875 1.875-1.875 1.035 0 1.875.84 1.875 1.875 0 1.035-.84 1.875-1.875 1.875zm15 0c-1.035 0-1.875-.84-1.875-1.875 0-1.035.84-1.875 1.875-1.875 1.035 0 1.875.84 1.875 1.875 0 1.035-.84 1.875-1.875 1.875z" />
+    <defs>
+        <linearGradient id="paint0_linear" x1="15" x2="79" y1="6" y2="70"
+            gradientUnits="userSpaceOnUse">
+            <stop stop-color="#5BA7FF" />
+            <stop offset="1" stop-color="#415FFF" />
+        </linearGradient>
+        <filter id="filter0_ddi" width="88" height="88" x="0" y="0"
+            color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+            <feOffset dx="-3" dy="6" />
+            <feGaussianBlur stdDeviation="6" />
+            <feColorMatrix values="0 0 0 0 0 0 0 0 0 0.163442 0 0 0 0 0.545833 0 0 0 0.24 0" />
+            <feBlend in2="BackgroundImageFix" result="effect1_dropShadow" />
+            <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+            <feOffset dy="4" />
+            <feGaussianBlur stdDeviation="4" />
+            <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+            <feBlend in2="effect1_dropShadow" result="effect2_dropShadow" />
+            <feBlend in="SourceGraphic" in2="effect2_dropShadow" result="shape" />
+            <feColorMatrix in="SourceAlpha" result="hardAlpha"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+            <feOffset dx="2" dy="4" />
+            <feGaussianBlur stdDeviation="4" />
+            <feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic" />
+            <feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.12 0" />
+            <feBlend in2="shape" result="effect3_innerShadow" />
+        </filter>
+    </defs>
+</svg>

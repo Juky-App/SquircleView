@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="squircle_background_image" format="reference" />
+    <attr name="squircle_background_color" format="color" />
+
+    <attr name="squircle_gradient_drawable" format="reference" />
+    <attr name="squircle_gradient_start_color" format="color" />
+    <attr name="squircle_gradient_end_color" format="color" />
+    <attr name="squircle_gradient_direction">
+        <enum name="top_to_bottom" value="0" />
+        <enum name="top_right_to_bottom_left" value="1" />
+        <enum name="right_to_left" value="2" />
+        <enum name="bottom_right_to_top_left" value="3" />
+        <enum name="bottom_to_top" value="4" />
+        <enum name="bottom_left_to_top_right" value="5" />
+        <enum name="left_to_right" value="6" />
+        <enum name="top_left_to_bottom_right" value="7" />
+    </attr>
+
+    <attr name="squircle_shadow_elevation" format="dimension" />
+    <attr name="squircle_shadow_elevation_color" format="color" />
+
+    <attr name="squircle_border_color" format="color" />
+    <attr name="squircle_border_width" format="dimension" />
+
+    <attr name="squircle_ripple_enabled" format="boolean" />
+
+    <!-- Android attrs do not have support for a parent, thus we need to repeat all attributes.. -->
+    <declare-styleable name="SquircleView">
+        <attr name="squircle_background_image" />
+        <attr name="squircle_background_color" />
+        <attr name="squircle_gradient_drawable" />
+        <attr name="squircle_gradient_start_color" />
+        <attr name="squircle_gradient_end_color" />
+        <attr name="squircle_gradient_direction" />
+        <attr name="squircle_shadow_elevation" />
+        <attr name="squircle_shadow_elevation_color" />
+        <attr name="squircle_border_color" />
+        <attr name="squircle_border_width" />
+        <attr name="squircle_ripple_enabled" />
+    </declare-styleable>
+
+    <declare-styleable name="SquircleButton">
+        <attr name="squircle_background_image" />
+        <attr name="squircle_background_color" />
+        <attr name="squircle_gradient_drawable" />
+        <attr name="squircle_gradient_start_color" />
+        <attr name="squircle_gradient_end_color" />
+        <attr name="squircle_gradient_direction" />
+        <attr name="squircle_shadow_elevation" />
+        <attr name="squircle_shadow_elevation_color" />
+        <attr name="squircle_border_color" />
+        <attr name="squircle_border_width" />
+        <attr name="squircle_ripple_enabled" />
+    </declare-styleable>
+
+    <declare-styleable name="SquircleConstraintLayout">
+        <attr name="squircle_background_image" />
+        <attr name="squircle_background_color" />
+        <attr name="squircle_gradient_drawable" />
+        <attr name="squircle_gradient_start_color" />
+        <attr name="squircle_gradient_end_color" />
+        <attr name="squircle_gradient_direction" />
+        <attr name="squircle_shadow_elevation" />
+        <attr name="squircle_shadow_elevation_color" />
+        <attr name="squircle_border_color" />
+        <attr name="squircle_border_width" />
+        <attr name="squircle_ripple_enabled" />
+    </declare-styleable>
+
+    <declare-styleable name="SquircleImageView">
+        <attr name="squircle_background_image" />
+        <attr name="squircle_background_color" />
+        <attr name="squircle_gradient_drawable" />
+        <attr name="squircle_gradient_start_color" />
+        <attr name="squircle_gradient_end_color" />
+        <attr name="squircle_gradient_direction" />
+        <attr name="squircle_shadow_elevation" />
+        <attr name="squircle_shadow_elevation_color" />
+        <attr name="squircle_border_color" />
+        <attr name="squircle_border_width" />
+        <attr name="squircle_ripple_enabled" />
+    </declare-styleable>
+
+    <declare-styleable name="Default">
+        <attr name="android:textColor" />
+    </declare-styleable>
+</resources>
