@@ -45,7 +45,7 @@ jobs:
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_name: "SquircleView.aar"
-          asset_path: /library/build/outputs/aar/SquircleView-release.aar
+          asset_path: ./library/build/outputs/aar/SquircleView-release.aar
           asset_content_type: application/octet-stream
 
       - name: Build and publish SDK to Maven
