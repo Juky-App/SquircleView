@@ -33,13 +33,17 @@ Different kinds of buttons, layouts and images you can create
     4. [Load image](#load-image)
     5. [Attributes](#attributes)
     6. [Methods](#methods)
-3. [Todo](#todo)
-4. [Contributing](#contributing)
-5. [Contributors](#contributors)
-6. [Showcase](#showcase)
-7. [Changelog](#changelog)
-8. [Attribution](#attribution)
-9. [License](#license)
+3. [Android Shapes](#android-shapes)
+    1. [ShapeAppearance](#shapeappearance)
+    2. [ShapeDrawable](#shapedrawable)
+    3. [Methods and classes](#methods-and-classes)
+4. [Todo](#todo)
+5. [Contributing](#contributing)
+6. [Contributors](#contributors)
+7. [Showcase](#showcase)
+8. [Changelog](#changelog)
+9. [Attribution](#attribution)
+10. [License](#license)
 
 ---
 
@@ -63,7 +67,7 @@ Also add the SquircleView dependency to your app build.gradle
 
 ```groovy
 dependencies {
-    implementation "app.juky:squircleview:0.0.1"
+    implementation "app.juky:squircleview:0.0.2"
 }
 ```
 
@@ -176,6 +180,49 @@ Glide.with(this).load(R.drawable.my_image)
 fun setImage(drawable: Drawable?)
 ```
 
+## Android Shapes
+
+As you might have encountered before, Android does support
+custom [Shapes](https://material.io/design/shape/about-shape.html#shaping-material) to be applied to buttons, images,
+ConstraintLayout, etc. I've decided to create a custom view to allow some flexibility when it comes to using gradients
+and other functionalities which don't work really well with shapes. If you would still like to use a ShapeDrawable /
+ShapeAppearance, I've decided to add this functionality to the library. Please note that this is only supported
+programmatically, not via XML.
+
+### ShapeAppearance
+
+```kotlin
+binding.buttonWithShapeDrawable.shapeAppearanceModel = SquircleShape.getShapeAppearance().build()
+```
+
+### ShapeDrawable
+
+```kotlin
+// The background color is not preserved, so it needs to be re-applied
+binding.constraintLayoutWithShapeDrawable.background =
+	SquircleShape.getShapeDrawable(binding.constraintLayoutWithShapeDrawable).apply {
+		this.paint.apply {
+			this.color = ContextCompat.getColor(this, R.color.my_color)
+		}
+	}
+```
+
+### Methods and classes
+
+#### Methods
+
+```kotlin
+// Methods derived from SquircleShape
+fun getSquirclePath(rect: RectF, width: Int, height: Int): ShapePath
+fun getShapeAppearance(): ShapeAppearanceModel.Builder
+fun getShapeDrawable(view: View): ShapeDrawable
+```
+
+#### Classes
+
+If you would like to apply the Squircle to only a certain corner or such, you can retrieve the custom CutCornerTreatment
+implementation, which is called `SquircleCornerTreatment`.
+
 ## Todo
 
 - [ ] Inner shadow support
@@ -189,6 +236,7 @@ fun setImage(drawable: Drawable?)
 - [ ] Option to determine text color by background / image
 - [ ] Use precise angle of gradient instead of matching it to a segment
 - [ ] Improve outer shadow boundaries
+- [ ] Jetpack compose support
 
 ## Contributing
 
@@ -226,7 +274,11 @@ Check out the [CONTRIBUTING.md](CONTRIBUTING.md) file to know more
 
 ## Changelog
 
-- V0.0.1 (10 june 2021): Initial release
+- V0.0.2 (12 june 2021):
+    - Added support for Android shapes
+    - Fixed Maven using the wrong source url
+- V0.0.1 (10 june 2021):
+    - Initial release
 
 ## Attribution
 
