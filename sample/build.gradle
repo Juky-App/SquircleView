@@ -51,10 +51,10 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
     // Import the library
-    // implementation project(':library')
+    implementation project(':library')
 
     // Test the library using the Maven central / local dependency
-    implementation 'app.juky:squircleview:0.0.1'
+    //implementation 'app.juky:squircleview:0.0.2'
 
     // Image loading
     implementation 'com.github.bumptech.glide:glide:4.12.0'
