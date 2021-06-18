@@ -23,6 +23,9 @@ import app.juky.squircleview.utils.SquircleShadowProvider.getShadowProvider
  * update the styles where necessary.
  */
 class SquircleStyle(val context: Context, val view: View, internal val core: SquircleCore) {
+    /**
+     * Set the background image
+     */
     var backgroundImage: Bitmap?
         get() = core.backgroundImage
         set(value) {
@@ -261,7 +264,6 @@ class SquircleStyle(val context: Context, val view: View, internal val core: Squ
      */
     fun setGradientDirection(angle: Int) {
         core.gradientDirection = GradientDirection.getByAngle(angle)
-        println("AAQ" + GradientDirection.getByAngle(angle))
         SquircleGradient.onViewSizeChanged(view.width, view.height, view, core)
     }
 }

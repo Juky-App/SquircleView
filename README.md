@@ -140,13 +140,13 @@ complex layout with texts and icons.
 
 #### Load image
 
-You can load an image in every view using the `setImage` method, but you can also use your favorite image loading
+You can load an image in every view using the `setBackgroundImage` method, but you can also use your favorite image loading
 library to load it in for you. We have out of the box support for Glide, Picasso, Fresco, Coil, etc.
 
 ##### Load image normally
 
 ```kotlin
-my_squircle_image_view.setImage(ContextCompat.getDrawable(context, R.drawable.my_image))
+my_squircle_image_view.setBackgroundImage(ContextCompat.getDrawable(context, R.drawable.my_image))
 ```
 
 ##### Load image using an image loading library like Glide:

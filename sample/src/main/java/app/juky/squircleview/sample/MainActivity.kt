@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // Examples of changing the view properties
         // binding.normalButton.style.backgroundImage = ContextCompat.getDrawable(this, R.drawable.first_image)?.toBitmap()
         // binding.normalButton.style.backgroundColor = Color.RED
         // binding.normalButton.style.backgroundColorRes = R.color.teal_200
