@@ -67,7 +67,7 @@ internal open class SquircleCore(context: Context, attrs: AttributeSet?, view: V
             gradientDrawable = getDrawable(R.styleable.SquircleView_squircle_gradient_drawable) as? GradientDrawable
             gradientStartColor = getColor(R.styleable.SquircleView_squircle_gradient_start_color, DEFAULT_COLOR_VALUE)
             gradientEndColor = getColor(R.styleable.SquircleView_squircle_gradient_end_color, DEFAULT_COLOR_VALUE)
-            gradientDirection = GradientDirection.values()[getInt(R.styleable.SquircleView_squircle_gradient_direction, GradientDirection.TOP_LEFT_BOTTOM_RIGHT.ordinal)]
+            gradientDirection = GradientDirection.values()[getInt(R.styleable.SquircleView_squircle_gradient_direction, GradientDirection.DEFAULT.ordinal)]
             borderColor = getColor(R.styleable.SquircleView_squircle_border_color, DEFAULT_COLOR_VALUE)
             borderWidth = getDimension(R.styleable.SquircleView_squircle_border_width, 0f)
             rippleEnabled = getBoolean(R.styleable.SquircleView_squircle_ripple_enabled, view !is SquircleImageView)
