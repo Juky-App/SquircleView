@@ -8,15 +8,15 @@ import android.net.Uri
 import android.util.AttributeSet
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toBitmap
 import app.juky.squircleview.data.SquircleCore
+import app.juky.squircleview.data.SquircleStyle
 import app.juky.squircleview.utils.SquircleCanvas
 import app.juky.squircleview.utils.SquircleGradient
 import java.io.FileNotFoundException
 
 class SquircleImageView(context: Context, attrs: AttributeSet?) : AppCompatImageView(context, attrs), ISquircleView {
     private val core = SquircleCore(context, attrs, this)
+    override val style = SquircleStyle(context = context, view = this, core = core)
 
     init {
         // Default button style background should be hidden. This cannot be done in the
@@ -35,28 +35,19 @@ class SquircleImageView(context: Context, attrs: AttributeSet?) : AppCompatImage
         SquircleGradient.onViewSizeChanged(newWidth, newHeight, this, core)
     }
 
-    override fun setImage(drawable: Drawable?) {
-        core.backgroundImage = drawable?.toBitmap()
-        invalidate()
-    }
-
-    override fun setImage(@DrawableRes resId: Int) {
-        setImage(ContextCompat.getDrawable(context, resId))
-    }
-
     // Support image library view loading
     override fun setBackgroundResource(@DrawableRes resId: Int) {
-        setImage(resId)
+        style.setBackgroundImage(resId)
     }
 
     // Support image library view loading
     override fun setBackgroundDrawable(background: Drawable?) {
-        setImage(background)
+        style.setBackgroundImage(background)
     }
 
     // Support image library view loading
     override fun setImageResource(@DrawableRes resId: Int) {
-        setImage(resId)
+        style.setBackgroundImage(resId)
     }
 
     // Support image library view loading
@@ -64,7 +55,7 @@ class SquircleImageView(context: Context, attrs: AttributeSet?) : AppCompatImage
         try {
             uri ?: return
             val inputStream = context.contentResolver.openInputStream(uri) ?: return
-            setImage(Drawable.createFromStream(inputStream, uri.toString()))
+            style.setBackgroundImage(Drawable.createFromStream(inputStream, uri.toString()))
         } catch (e: FileNotFoundException) {
             // Failed to set URI as drawable
         }
@@ -72,7 +63,7 @@ class SquircleImageView(context: Context, attrs: AttributeSet?) : AppCompatImage
 
     // Support image library view loading
     override fun setImageDrawable(drawable: Drawable?) {
-        setImage(drawable)
+        style.setBackgroundImage(drawable)
     }
 
     // Support image library view loading
