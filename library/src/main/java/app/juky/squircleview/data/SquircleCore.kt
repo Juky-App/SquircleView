@@ -23,7 +23,7 @@ import app.juky.squircleview.views.SquircleButton
 import app.juky.squircleview.views.SquircleConstraintLayout
 import app.juky.squircleview.views.SquircleImageView
 
-internal open class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
+class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
     val shape = RectF()
     val shapePaint = Paint().apply {
         this.style = Paint.Style.FILL
