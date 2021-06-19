@@ -11,6 +11,7 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
+import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
@@ -37,17 +38,17 @@ internal open class SquircleCore(context: Context, attrs: AttributeSet?, view: V
     var squirclePath = Path()
 
     var backgroundImage: Bitmap?
-    var backgroundColor: Int
+    @ColorInt var backgroundColor: Int
 
     var shadowElevation: Float
-    var shadowElevationColor: Int
+    @ColorInt var shadowElevationColor: Int
 
     var gradientDrawable: GradientDrawable?
-    var gradientStartColor: Int
-    var gradientEndColor: Int
+    @ColorInt var gradientStartColor: Int
+    @ColorInt var gradientEndColor: Int
     var gradientDirection: GradientDirection
 
-    var borderColor: Int
+    @ColorInt var borderColor: Int
     var borderWidth: Float
 
     var rippleEnabled: Boolean
@@ -67,7 +68,7 @@ internal open class SquircleCore(context: Context, attrs: AttributeSet?, view: V
             gradientDrawable = getDrawable(R.styleable.SquircleView_squircle_gradient_drawable) as? GradientDrawable
             gradientStartColor = getColor(R.styleable.SquircleView_squircle_gradient_start_color, DEFAULT_COLOR_VALUE)
             gradientEndColor = getColor(R.styleable.SquircleView_squircle_gradient_end_color, DEFAULT_COLOR_VALUE)
-            gradientDirection = GradientDirection.values()[getInt(R.styleable.SquircleView_squircle_gradient_direction, GradientDirection.TOP_LEFT_BOTTOM_RIGHT.ordinal)]
+            gradientDirection = GradientDirection.values()[getInt(R.styleable.SquircleView_squircle_gradient_direction, GradientDirection.DEFAULT.ordinal)]
             borderColor = getColor(R.styleable.SquircleView_squircle_border_color, DEFAULT_COLOR_VALUE)
             borderWidth = getDimension(R.styleable.SquircleView_squircle_border_width, 0f)
             rippleEnabled = getBoolean(R.styleable.SquircleView_squircle_ripple_enabled, view !is SquircleImageView)

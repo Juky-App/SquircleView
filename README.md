@@ -67,7 +67,7 @@ Also add the SquircleView dependency to your app build.gradle
 
 ```groovy
 dependencies {
-    implementation "app.juky:squircleview:0.0.2"
+    implementation "app.juky:squircleview:0.0.3"
 }
 ```
 
@@ -140,13 +140,13 @@ complex layout with texts and icons.
 
 #### Load image
 
-You can load an image in every view using the `setImage` method, but you can also use your favorite image loading
+You can load an image in every view using the `setBackgroundImage` method, but you can also use your favorite image loading
 library to load it in for you. We have out of the box support for Glide, Picasso, Fresco, Coil, etc.
 
 ##### Load image normally
 
 ```kotlin
-my_squircle_image_view.setImage(ContextCompat.getDrawable(context, R.drawable.my_image))
+my_squircle_image_view.setBackgroundImage(ContextCompat.getDrawable(context, R.drawable.my_image))
 ```
 
 ##### Load image using an image loading library like Glide:
@@ -175,9 +175,39 @@ Glide.with(this).load(R.drawable.my_image)
 
 ### Methods
 
+Properties of the views can be modified by setting using following variables / methods. They can be accessed via the `style` property of the view. Note: Only supply color resources to the variables with the suffix `Res`, otherwise your colors won't work.
+
 ```kotlin
-// Common methods
-fun setImage(drawable: Drawable?)
+// Property getters / setters
+var backgroundImage: Bitmap?
+var backgroundColor: Int
+var backgroundColorRes: Int
+var shadowElevation: Float
+var shadowElevationColor: Int
+var shadowElevationColorRes: Int
+var gradientDrawable: GradientDrawable?
+var gradientStartColor: Int
+var gradientStartColorRes: Int
+var gradientEndColor: Int
+var gradientEndColorRes: Int
+var gradientDirection: GradientDirection
+var borderColor: Int
+var borderColorRes: Int
+var borderWidth: Float
+var rippleEnabled: Boolean
+
+// Methods
+fun setBackgroundImage(drawable: Drawable?)
+fun setBackgroundImage(resId: Int)
+fun setGradientDrawable(resId: Int)
+fun setGradientDirection(angle: Int)
+```
+
+#### Example:
+```
+val button = findViewById<SquircleButton>(R.id.button)
+button.style.backgroundColor = Color.RED
+button.style.backgroundColorRes = R.color.teal_200
 ```
 
 ## Android Shapes
@@ -227,7 +257,7 @@ implementation, which is called `SquircleCornerTreatment`.
 
 - [ ] Inner shadow support
 - [ ] Layouts other than ConstraintLayout
-- [ ] Expose all attributes via methods
+- [X] Expose all attributes via methods
 - [ ] Ensure it works on API 21 - 30
 - [ ] Check Java support
 - [ ] Performance testing with lots of bitmaps
@@ -237,6 +267,7 @@ implementation, which is called `SquircleCornerTreatment`.
 - [ ] Use precise angle of gradient instead of matching it to a segment
 - [ ] Improve outer shadow boundaries
 - [ ] Jetpack compose support
+- [ ] Reduce `invalidate()` calls when changing multiple style properties
 
 ## Contributing
 
@@ -274,6 +305,8 @@ Check out the [CONTRIBUTING.md](CONTRIBUTING.md) file to know more
 
 ## Changelog
 
+- V0.0.3 (19 june 2021)
+    - Added support for programmatically setting the view's properties
 - V0.0.2 (12 june 2021):
     - Added support for Android shapes
     - Fixed Maven using the wrong source url
