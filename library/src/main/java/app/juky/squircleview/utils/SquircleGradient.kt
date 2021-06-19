@@ -12,55 +12,49 @@ import app.juky.squircleview.data.SquircleCore
 internal object SquircleGradient {
     const val DEFAULT_COLOR_VALUE = -1
 
+    // Draw in onSizeChanged to reduce recalculations on every draw
     fun onViewSizeChanged(newWidth: Int, newHeight: Int, view: View, core: SquircleCore) {
         if (newWidth > 0 && newHeight > 0) {
-            drawGradient(view, core)
+            core.shapePaint.shader = getGradient(view = view, core = core)
+            view.invalidate()
         }
     }
 
-    private fun drawGradient(view: View, core: SquircleCore) {
-        core.shapePaint.shader = getGradient(
-            view = view,
-            gradientStartColor = core.gradientStartColor,
-            gradientEndColor = core.gradientEndColor,
-            gradientDirection = core.gradientDirection,
-            gradientDrawable = core.gradientDrawable
-        )
-
-        view.invalidate()
-    }
-
-    private fun getGradient(view: View, gradientStartColor: Int, gradientEndColor: Int, gradientDirection: GradientDirection, gradientDrawable: GradientDrawable?): LinearGradient? {
-        if (gradientStartColor == DEFAULT_COLOR_VALUE && gradientEndColor == DEFAULT_COLOR_VALUE && gradientDrawable == null) {
+    private fun getGradient(view: View, core: SquircleCore): LinearGradient? {
+        if (core.gradientStartColor == DEFAULT_COLOR_VALUE && core.gradientEndColor == DEFAULT_COLOR_VALUE && core.gradientDrawable == null) {
             // No colors nor drawable known, no gradient available
             return null
         }
 
-        if (gradientDrawable == null) {
+        core.gradientDrawable?.let { gradientDrawable ->
+            return getGradientByDrawable(view = view, core = core, gradientDrawable = gradientDrawable)
+        } ?: run {
             // Using manual colors instead of gradient drawable
-            return getGradientByColor(view, gradientStartColor, gradientEndColor, gradientDirection)
+            return getGradientByColor(view = view, core = core)
         }
-
-        return getGradientByDrawable(view, gradientDrawable)
     }
 
-    private fun getGradientByColor(view: View, gradientStartColor: Int, gradientEndColor: Int, gradientDirection: GradientDirection): LinearGradient {
-        val direction = GradientDirection.getCoordinatesByDirection(view, gradientDirection)
+    private fun getGradientByColor(view: View, core: SquircleCore): LinearGradient {
+        val direction = GradientDirection.getCoordinatesByDirection(view = view, direction = core.gradientDirection)
 
         return LinearGradient(
             direction.startX.toFloat(),
             direction.startY.toFloat(),
             direction.endX.toFloat(),
             direction.endY.toFloat(),
-            gradientStartColor,
-            gradientEndColor,
+            core.gradientStartColor,
+            core.gradientEndColor,
             Shader.TileMode.REPEAT
         )
     }
 
-    private fun getGradientByDrawable(view: View, gradientDrawable: GradientDrawable): LinearGradient {
+    private fun getGradientByDrawable(view: View, core: SquircleCore, gradientDrawable: GradientDrawable): LinearGradient {
         fun transparentColor() = ContextCompat.getColor(view.context, android.R.color.transparent)
-        val direction = GradientDirection.getCoordinates(view, gradientDrawable.orientation)
+        val coordinates: GradientDirection.GradientCoordinates = if (core.gradientDirection == GradientDirection.DEFAULT) {
+            GradientDirection.getCoordinates(view = view, orientation = gradientDrawable.orientation)
+        } else {
+            GradientDirection.getCoordinatesByDirection(view = view, direction = core.gradientDirection)
+        }
 
         // Gradient drawable does not contain colors in Android < N
         val startColor = (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -77,10 +71,10 @@ internal object SquircleGradient {
         })
 
         return LinearGradient(
-            direction.startX.toFloat(),
-            direction.startY.toFloat(),
-            direction.endX.toFloat(),
-            direction.endY.toFloat(),
+            coordinates.startX.toFloat(),
+            coordinates.startY.toFloat(),
+            coordinates.endX.toFloat(),
+            coordinates.endY.toFloat(),
             startColor,
             stopColor,
             Shader.TileMode.REPEAT

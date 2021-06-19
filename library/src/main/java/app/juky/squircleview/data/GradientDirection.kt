@@ -4,7 +4,7 @@ import android.graphics.drawable.GradientDrawable
 import android.view.View
 import kotlin.math.abs
 
-internal enum class GradientDirection {
+enum class GradientDirection {
     TOP_BOTTOM,
     TOP_RIGHT_BOTTOM_LEFT,
     RIGHT_LEFT,
@@ -12,35 +12,32 @@ internal enum class GradientDirection {
     BOTTOM_TOP,
     BOTTOM_LEFT_TOP_RIGHT,
     LEFT_RIGHT,
-    TOP_LEFT_BOTTOM_RIGHT;
+    TOP_LEFT_BOTTOM_RIGHT,
+    DEFAULT;
 
     companion object {
         private const val OFFSET = 22.5
 
         /**
-         * Get the GradientCoordinates using a given angle, which is equivalent to the way Android does
+         * Get the GradientDirection using a given angle, which is equivalent to the way Android does
          * it under the hood.
          *
-         * @param view View View used to determine the startX/startY and endX/endY coordinates
          * @param angle Int Angle of the gradient ranging from 0 to 360
-         * @return GradientCoordinates Direction of the gradient
+         * @return GradientDirection Direction of the gradient
          */
-        fun getCoordinates(view: View, angle: Int): GradientCoordinates {
+        fun getByAngle(angle: Int): GradientDirection {
             // Target all pieces of a full circle, each angle will be 45 degrees so it corresponds with the predefined directions
-            return getCoordinatesByDirection(
-                view = view,
-                direction = when (abs(angle % 360).toDouble()) {
-                    in (0.0)..(0 + OFFSET) -> LEFT_RIGHT
-                    in (0 + OFFSET)..(45 + OFFSET) -> BOTTOM_LEFT_TOP_RIGHT
-                    in (45 + OFFSET)..(90 + OFFSET) -> BOTTOM_TOP
-                    in (90 + OFFSET)..(135 + OFFSET) -> BOTTOM_RIGHT_TOP_LEFT
-                    in (135 + OFFSET)..(180 + OFFSET) -> RIGHT_LEFT
-                    in (180 + OFFSET)..(225 + OFFSET) -> TOP_RIGHT_BOTTOM_LEFT
-                    in (225 + OFFSET)..(270 + OFFSET) -> TOP_BOTTOM
-                    in (270 + OFFSET)..(315 + OFFSET) -> TOP_LEFT_BOTTOM_RIGHT
-                    else -> TOP_LEFT_BOTTOM_RIGHT
-                }
-            )
+            return when (abs(angle % 360).toDouble()) {
+                in (0.0)..(0 + OFFSET) -> LEFT_RIGHT
+                in (0 + OFFSET)..(45 + OFFSET) -> BOTTOM_LEFT_TOP_RIGHT
+                in (45 + OFFSET)..(90 + OFFSET) -> BOTTOM_TOP
+                in (90 + OFFSET)..(135 + OFFSET) -> BOTTOM_RIGHT_TOP_LEFT
+                in (135 + OFFSET)..(180 + OFFSET) -> RIGHT_LEFT
+                in (180 + OFFSET)..(225 + OFFSET) -> TOP_RIGHT_BOTTOM_LEFT
+                in (225 + OFFSET)..(270 + OFFSET) -> TOP_BOTTOM
+                in (270 + OFFSET)..(315 + OFFSET) -> TOP_LEFT_BOTTOM_RIGHT
+                else -> TOP_LEFT_BOTTOM_RIGHT
+            }
         }
 
         /**
@@ -104,7 +101,7 @@ internal enum class GradientDirection {
                 endX = view.width,
                 endY = view.height / 2
             )
-            TOP_LEFT_BOTTOM_RIGHT -> GradientCoordinates(
+            TOP_LEFT_BOTTOM_RIGHT, DEFAULT -> GradientCoordinates(
                 startX = 0,
                 startY = 0,
                 endX = view.width,
