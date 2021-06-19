@@ -267,6 +267,7 @@ implementation, which is called `SquircleCornerTreatment`.
 - [ ] Use precise angle of gradient instead of matching it to a segment
 - [ ] Improve outer shadow boundaries
 - [ ] Jetpack compose support
+- [ ] Reduce `invalidate()` calls when changing multiple style properties
 
 ## Contributing
 
