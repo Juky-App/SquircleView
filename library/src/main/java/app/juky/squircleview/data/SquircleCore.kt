@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.RectF
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.AttributeSet
@@ -52,6 +53,7 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
     var borderWidth: Float
 
     var rippleEnabled: Boolean
+    var rippleDrawable: Drawable?
 
     init {
         context.obtainStyledAttributes(attrs, R.styleable.SquircleView).apply {
@@ -72,6 +74,7 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
             borderColor = getColor(R.styleable.SquircleView_squircle_border_color, DEFAULT_COLOR_VALUE)
             borderWidth = getDimension(R.styleable.SquircleView_squircle_border_width, 0f)
             rippleEnabled = getBoolean(R.styleable.SquircleView_squircle_ripple_enabled, view !is SquircleImageView)
+            rippleDrawable = getDrawable(R.styleable.SquircleView_squircle_ripple_drawable)
 
             recycle()
         }
@@ -110,6 +113,10 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
                     // FIXME it seems like the ConstraintLayout itself has a bug where, if no background nor foreground is set,
                     //  the view will appear with a width of 0 and height of 0, and never call the onDraw method
                     view.foreground = ContextCompat.getDrawable(context, R.drawable.transparent_foreground)
+                } else {
+                    if (rippleDrawable != null) {
+                        view.foreground = rippleDrawable
+                    }
                 }
             }
 

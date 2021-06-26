@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         // binding.normalButton.style.borderColorRes = R.color.purple_500
         // binding.normalButton.style.borderWidth = 20f
         // binding.normalButton.style.rippleEnabled = false
+        // binding.normalButton.style.rippleDrawable = ContextCompat.getDrawable(this, R.drawable.ripple)
 
         // binding.normalButton.style.setBackgroundImage(ContextCompat.getDrawable(this, R.drawable.second_image))
         // binding.normalButton.style.setBackgroundImage(R.drawable.third_image)
