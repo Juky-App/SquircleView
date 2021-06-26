@@ -219,6 +219,28 @@ class SquircleStyle(val context: Context, val view: View, internal val core: Squ
         }
 
     /**
+     * Set a drawable as ripple foreground
+     *
+     * ```
+     * <ripple xmlns:android="http://schemas.android.com/apk/res/android"
+     *     android:color="#2C1D1F">
+     *     <item android:id="@android:id/mask">
+     *         <shape android:shape="rectangle">
+     *             <solid android:color="#2C1D1F" />
+     *         </shape>
+     *     </item>
+     * </ripple>
+     * ```
+     */
+    var rippleDrawable: Drawable?
+        get() = core.rippleDrawable
+        set(drawable) {
+            core.rippleDrawable = drawable
+            view.foreground = core.rippleDrawable
+            view.invalidate()
+        }
+
+    /**
      * Set the background image using a drawable
      *
      * @param drawable Drawable? Background image drawable
