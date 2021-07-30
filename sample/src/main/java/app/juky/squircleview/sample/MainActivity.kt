@@ -1,16 +1,11 @@
 package app.juky.squircleview.sample
 
-import android.graphics.Color
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toBitmap
-import app.juky.squircleview.data.GradientDirection
-import app.juky.squircleview.data.SquircleCore
 import app.juky.squircleview.sample.databinding.ActivityMainBinding
 import app.juky.squircleview.utils.SquircleShape
 import app.juky.squircleview.views.SquircleImageView
@@ -40,6 +35,17 @@ class MainActivity : AppCompatActivity() {
                 this.color = ContextCompat.getColor(this@MainActivity, R.color.teal_700)
             }
         }
+
+        binding.normalButton.setOnClickListener {
+            // Just demonstrating a ripple will only work with a click listener
+        }
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            // Just demonstrating a ripple will only work with a click listener
+            binding.normalNoGradientButton.setOnClickListener {
+                // Nothing
+            }
+        }, 5000)
 
         // Examples of changing the view properties
         // binding.normalButton.style.backgroundImage = ContextCompat.getDrawable(this, R.drawable.first_image)?.toBitmap()

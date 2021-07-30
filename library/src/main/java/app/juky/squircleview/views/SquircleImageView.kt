@@ -35,6 +35,11 @@ class SquircleImageView(context: Context, attrs: AttributeSet?) : AppCompatImage
         SquircleGradient.onViewSizeChanged(newWidth, newHeight, this, core)
     }
 
+    override fun setOnClickListener(l: OnClickListener?) {
+        super.setOnClickListener(l)
+        style.setupRipple()
+    }
+
     // Support image library view loading
     override fun setBackgroundResource(@DrawableRes resId: Int) {
         style.setBackgroundImage(resId)

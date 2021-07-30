@@ -210,6 +210,11 @@ button.style.backgroundColor = Color.RED
 button.style.backgroundColorRes = R.color.teal_200
 ```
 
+### Notes:
+
+You might notice that there's no ripple, even though it has been enabled or a drawable has been set. This is because the
+ripple will only be shown once you've set a click listener.
+
 ## Android Shapes
 
 As you might have encountered before, Android does support
