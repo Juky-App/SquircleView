@@ -1,16 +1,12 @@
 package app.juky.squircleview.sample
 
-import android.graphics.Color
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toBitmap
-import app.juky.squircleview.data.GradientDirection
-import app.juky.squircleview.data.SquircleCore
 import app.juky.squircleview.sample.databinding.ActivityMainBinding
 import app.juky.squircleview.utils.SquircleShape
 import app.juky.squircleview.views.SquircleImageView
@@ -31,6 +27,28 @@ class MainActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             loadImageWithResourceLoading()
         }, 5000)
+
+        // Slide the seeker to change the corner smoothing
+        binding.seekerValue.text = binding.seeker.progress.toString()
+        binding.seeker.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                binding.tester.shapeAppearanceModel = SquircleShape.getShapeAppearance(progress).build()
+                binding.firstRowItem.style.setCornerSmoothing(progress)
+                binding.secondRowItem.style.setCornerSmoothing(progress)
+                binding.thirdRowItem.style.setCornerSmoothing(progress)
+                binding.fourthRowItem.style.setCornerSmoothing(progress)
+                binding.normalButton.style.setCornerSmoothing(progress)
+                binding.normalNoGradientButton.style.setCornerSmoothing(progress)
+                binding.imageButton.style.setCornerSmoothing(progress)
+                binding.normalButtonWithImage.style.setCornerSmoothing(progress)
+                binding.verticalButton.style.setCornerSmoothing(progress)
+                binding.seekerValue.text = progress.toString()
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+        })
 
         // The methods down below are native ShapeDrawable and ShapeAppearance usages
         binding.buttonWithShapeDrawable.shapeAppearanceModel = SquircleShape.getShapeAppearance().build()

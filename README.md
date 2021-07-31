@@ -159,19 +159,20 @@ Glide.with(this).load(R.drawable.my_image)
 
 ### Attributes
 
-| Attribute                       | Type      | Default                            | Description                                             |
-|---------------------------------|-----------|------------------------------------|---------------------------------------------------------|
-| squircle_background_image       | reference |                                    | Background image of view                                |
-| squircle_background_color       | color     | #000000                            | Background color of view                                |
-| squircle_gradient_drawable      | reference |                                    | Gradient drawable displayed in view                     |
-| squircle_gradient_start_color   | color     |                                    | Gradient start color                                    |
-| squircle_gradient_end_color     | color     |                                    | Gradient end color                                      |
-| squircle_gradient_direction     | enum      | TOP_LEFT_BOTTOM_RIGHT              | Direction of the gradient (only for the color gradient) |
-| squircle_shadow_elevation       | dimension | Default of the super view          | Shadow elevation                                        |
-| squircle_shadow_elevation_color | color     | #42000000                          | Shadow elevation color                                  |
-| squircle_border_color           | color     |                                    | Border color                                            |
-| squircle_border_width           | dimension | 0                                  | Border width                                            |
-| squircle_ripple_enabled         | boolean   | true (false for SquircleImageView) | Ripple enabled or disabled                              |
+| Attribute                            | Type      | Default                            | Description                                                |
+|--------------------------------------|-----------|------------------------------------|------------------------------------------------------------|
+| squircle_background_image            | reference |                                    | Background image of view                                   |
+| squircle_background_color            | color     | #000000                            | Background color of view                                   |
+| squircle_gradient_drawable           | reference |                                    | Gradient drawable displayed in view                        |
+| squircle_gradient_start_color        | color     |                                    | Gradient start color                                       |
+| squircle_gradient_end_color          | color     |                                    | Gradient end color                                         |
+| squircle_gradient_direction          | enum      | TOP_LEFT_BOTTOM_RIGHT              | Direction of the gradient (only for the color gradient)    |
+| squircle_shadow_elevation            | dimension | Default of the super view          | Shadow elevation                                           |
+| squircle_shadow_elevation_color      | color     | #42000000                          | Shadow elevation color                                     |
+| squircle_border_color                | color     |                                    | Border color                                               |
+| squircle_border_width                | dimension | 0                                  | Border width                                               |
+| squircle_ripple_enabled              | boolean   | true (false for SquircleImageView) | Ripple enabled or disabled                                 |
+| squircle_corner_smoothing_percentage | integer   | 100%                               | Change the corner smoothing, a Squircle is 100% by default |
 
 ### Methods
 
@@ -197,10 +198,14 @@ var borderWidth: Float
 var rippleEnabled: Boolean
 
 // Methods
+fun setCornerSmoothing(cornerSmoothing: Int)
 fun setBackgroundImage(drawable: Drawable?)
 fun setBackgroundImage(resId: Int)
 fun setGradientDrawable(resId: Int)
 fun setGradientDirection(angle: Int)
+
+
+fun getCornerSmoothing(): Int
 ```
 
 #### Example:

@@ -10,6 +10,7 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.IntRange
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import app.juky.squircleview.R
@@ -217,6 +218,19 @@ class SquircleStyle(val context: Context, val view: View, internal val core: Squ
 
             view.invalidate()
         }
+
+    /**
+     * Retrieve the configured corner smoothing percentage
+     */
+    fun getCornerSmoothing() = core.cornerSmoothing
+
+    /**
+     * Change the default corner smoothing if you want to deflect from the original Squircle. Default Squircle value is 67%
+     */
+    fun setCornerSmoothing(@IntRange(from = 0, to = Constants.DEFAULT_CORNER_SMOOTHING) cornerSmoothing: Int) {
+        core.cornerSmoothing = cornerSmoothing
+        view.invalidate()
+    }
 
     /**
      * Set the background image using a drawable
