@@ -23,4 +23,9 @@ class SquircleConstraintLayout(context: Context, attrs: AttributeSet?) : Constra
         super.onSizeChanged(newWidth, newHeight, oldWidth, oldHeight)
         SquircleGradient.onViewSizeChanged(newWidth, newHeight, this, core)
     }
+
+    override fun setOnClickListener(l: OnClickListener?) {
+        super.setOnClickListener(l)
+        style.setupRipple()
+    }
 }

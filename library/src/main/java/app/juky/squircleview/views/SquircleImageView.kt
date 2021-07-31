@@ -35,6 +35,11 @@ class SquircleImageView(context: Context, attrs: AttributeSet?) : AppCompatImage
         SquircleGradient.onViewSizeChanged(newWidth, newHeight, this, core)
     }
 
+    override fun setOnClickListener(l: OnClickListener?) {
+        super.setOnClickListener(l)
+        style.setupRipple()
+    }
+
     // Support image library view loading
     override fun setBackgroundResource(@DrawableRes resId: Int) {
         style.setBackgroundImage(resId)
@@ -42,6 +47,7 @@ class SquircleImageView(context: Context, attrs: AttributeSet?) : AppCompatImage
 
     // Support image library view loading
     override fun setBackgroundDrawable(background: Drawable?) {
+        background ?: return
         style.setBackgroundImage(background)
     }
 
@@ -52,8 +58,9 @@ class SquircleImageView(context: Context, attrs: AttributeSet?) : AppCompatImage
 
     // Support image library view loading
     override fun setImageURI(uri: Uri?) {
+        uri ?: return
+
         try {
-            uri ?: return
             val inputStream = context.contentResolver.openInputStream(uri) ?: return
             style.setBackgroundImage(Drawable.createFromStream(inputStream, uri.toString()))
         } catch (e: FileNotFoundException) {
@@ -63,11 +70,13 @@ class SquircleImageView(context: Context, attrs: AttributeSet?) : AppCompatImage
 
     // Support image library view loading
     override fun setImageDrawable(drawable: Drawable?) {
+        drawable ?: return
         style.setBackgroundImage(drawable)
     }
 
     // Support image library view loading
     override fun setImageBitmap(bm: Bitmap?) {
+        bm ?: return
         core.backgroundImage = bm
         invalidate()
     }
