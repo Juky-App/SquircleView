@@ -11,6 +11,51 @@
         android:background="#FAFAFA"
         tools:context=".MainActivity">
 
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/tester"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_margin="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/second_image"
+            app:layout_constraintBottom_toTopOf="@id/squircleRowLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Change the corner smoothing"
+            app:layout_constraintBottom_toTopOf="@id/seeker"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/seeker" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/seeker"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:max="100"
+            android:min="1"
+            android:progress="67"
+            app:layout_constraintBottom_toBottomOf="@id/tester"
+            app:layout_constraintEnd_toStartOf="@id/seeker_value"
+            app:layout_constraintStart_toEndOf="@id/tester"
+            app:layout_constraintTop_toTopOf="@id/tester" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/seeker_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="10"
+            app:layout_constraintBottom_toBottomOf="@id/seeker"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/seeker"
+            app:layout_constraintTop_toTopOf="@id/seeker" />
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/squircleRowLayout"
             android:layout_width="match_parent"
@@ -19,13 +64,15 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/tester">
 
             <app.juky.squircleview.views.SquircleConstraintLayout
+                android:id="@+id/first_row_item"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_margin="8dp"
                 android:padding="16dp"
+                app:squircle_corner_smoothing_percentage="40"
                 app:squircle_gradient_end_color="#415FFF"
                 app:squircle_gradient_start_color="#5BA7FF"
                 app:squircle_ripple_enabled="false"
@@ -44,6 +91,7 @@
             </app.juky.squircleview.views.SquircleConstraintLayout>
 
             <app.juky.squircleview.views.SquircleConstraintLayout
+                android:id="@+id/second_row_item"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_margin="8dp"
@@ -64,6 +112,7 @@
             </app.juky.squircleview.views.SquircleConstraintLayout>
 
             <app.juky.squircleview.views.SquircleConstraintLayout
+                android:id="@+id/third_row_item"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_margin="8dp"
@@ -87,6 +136,7 @@
             </app.juky.squircleview.views.SquircleConstraintLayout>
 
             <app.juky.squircleview.views.SquircleConstraintLayout
+                android:id="@+id/fourth_row_item"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_margin="8dp"

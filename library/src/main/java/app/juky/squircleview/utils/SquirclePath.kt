@@ -2,10 +2,22 @@ package app.juky.squircleview.utils
 
 import android.graphics.Path
 import android.graphics.RectF
+import androidx.annotation.IntRange
+import app.juky.squircleview.data.Constants.DEFAULT_CORNER_SMOOTHING
+import app.juky.squircleview.data.Constants.MAX_DEFAULT_CORNER_SMOOTHING
 import kotlin.math.min
 
 object SquirclePath {
-    internal fun getRadiusByHeightOrWidth(height: Int, width: Int) = (min(height, width) * 0.67).toFloat()
+    internal fun getRadiusByHeightOrWidth(
+        height: Int,
+        width: Int,
+        @IntRange(from = 0, to = DEFAULT_CORNER_SMOOTHING)
+        cornerSmoothing: Int = DEFAULT_CORNER_SMOOTHING.toInt()
+    ): Float {
+        // Percentage cannot exceed 100%, convert it to a decimal percentage (e.g. 0.6)
+        val smoothingPercentage = min(cornerSmoothing, 100) / 100.0
+        return (min(height, width) * (smoothingPercentage * MAX_DEFAULT_CORNER_SMOOTHING).toFloat())
+    }
 
     /**
      * Get the Path used to represent a Squircle
@@ -15,8 +27,14 @@ object SquirclePath {
      * @param height Int Final height used to determine the radius
      * @return Path Squircle Path
      */
-    fun getSquirclePath(rect: RectF, width: Int, height: Int): Path {
-        val radius = getRadiusByHeightOrWidth(height, width)
+    fun getSquirclePath(
+        rect: RectF,
+        width: Int,
+        height: Int,
+        @IntRange(from = 0, to = DEFAULT_CORNER_SMOOTHING)
+        cornerSmoothing: Int = DEFAULT_CORNER_SMOOTHING.toInt()
+    ): Path {
+        val radius = getRadiusByHeightOrWidth(height, width, cornerSmoothing)
 
         val startX = rect.left
         val endX = rect.right
@@ -76,6 +94,9 @@ object SquirclePath {
             startX,
             endY - radius,
         )
+
+        // Left line
+        path.lineTo(startX, endY + radius)
 
         path.close()
 
