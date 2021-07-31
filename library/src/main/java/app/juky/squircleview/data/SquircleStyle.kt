@@ -5,16 +5,16 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
-import android.util.TypedValue
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.IntRange
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
-import app.juky.squircleview.R
 import app.juky.squircleview.utils.SquircleGradient
 import app.juky.squircleview.utils.SquircleShadowProvider.getShadowProvider
+import app.juky.squircleview.utils.getTransparentRippleDrawable
 
 /**
  * Because there are multiple Squircle components (Button, ImageView, ConstraintLayout) there is no possibility
@@ -208,15 +208,49 @@ class SquircleStyle(val context: Context, val view: View, internal val core: Squ
         set(enabled) {
             core.rippleEnabled = enabled
 
-            if (rippleEnabled) {
-                val ripple = TypedValue().also { context.theme.resolveAttribute(android.R.attr.selectableItemBackground, it, true) }.resourceId
-                view.foreground = ContextCompat.getDrawable(context, ripple)
+            if (rippleEnabled && view.hasOnClickListeners()) {
+                view.foreground = rippleDrawable
             } else {
-                view.foreground = ContextCompat.getDrawable(context, R.drawable.transparent_foreground)
+                view.foreground = context.getTransparentRippleDrawable()
             }
 
             view.invalidate()
         }
+
+    /**
+     * Set a drawable as ripple foreground
+     *
+     * ```
+     * <ripple xmlns:android="http://schemas.android.com/apk/res/android"
+     *     android:color="#2C1D1F">
+     *     <item android:id="@android:id/mask">
+     *         <shape android:shape="rectangle">
+     *             <solid android:color="#2C1D1F" />
+     *         </shape>
+     *     </item>
+     * </ripple>
+     * ```
+     */
+    var rippleDrawable: Drawable?
+        get() = core.rippleDrawable
+        set(drawable) {
+            core.rippleDrawable = drawable
+            if (view.hasOnClickListeners()) view.foreground = core.rippleDrawable
+            view.invalidate()
+        }
+
+    /**
+     * Retrieve the configured corner smoothing percentage
+     */
+    fun getCornerSmoothing() = core.cornerSmoothing
+
+    /**
+     * Change the default corner smoothing if you want to deflect from the original Squircle. Default Squircle value is 67%
+     */
+    fun setCornerSmoothing(@IntRange(from = 0, to = Constants.DEFAULT_CORNER_SMOOTHING) cornerSmoothing: Int) {
+        core.cornerSmoothing = cornerSmoothing
+        view.invalidate()
+    }
 
     /**
      * Set the background image using a drawable
@@ -265,5 +299,13 @@ class SquircleStyle(val context: Context, val view: View, internal val core: Squ
     fun setGradientDirection(angle: Int) {
         core.gradientDirection = GradientDirection.getByAngle(angle)
         SquircleGradient.onViewSizeChanged(view.width, view.height, view, core)
+    }
+
+    /**
+     * Setup a ripple, which will usually happen after a click listener has been set afterwards
+     */
+    internal fun setupRipple() {
+        // Trigger setter which will invalidate the view
+        rippleEnabled = core.rippleEnabled
     }
 }

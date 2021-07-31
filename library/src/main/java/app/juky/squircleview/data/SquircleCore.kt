@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.RectF
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.AttributeSet
@@ -12,13 +13,17 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import androidx.annotation.ColorInt
+import androidx.annotation.IntRange
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.widget.TextViewCompat.setTextAppearance
 import app.juky.squircleview.R
+import app.juky.squircleview.data.Constants.DEFAULT_CORNER_SMOOTHING
 import app.juky.squircleview.utils.SquircleGradient.DEFAULT_COLOR_VALUE
 import app.juky.squircleview.utils.SquircleShadowProvider.getShadowProvider
+import app.juky.squircleview.utils.getDefaultRippleDrawable
+import app.juky.squircleview.utils.getTransparentRippleDrawable
 import app.juky.squircleview.views.SquircleButton
 import app.juky.squircleview.views.SquircleConstraintLayout
 import app.juky.squircleview.views.SquircleImageView
@@ -52,6 +57,10 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
     var borderWidth: Float
 
     var rippleEnabled: Boolean
+    var rippleDrawable: Drawable?
+
+    @IntRange(from = 0, to = DEFAULT_CORNER_SMOOTHING)
+    var cornerSmoothing: Int
 
     init {
         context.obtainStyledAttributes(attrs, R.styleable.SquircleView).apply {
@@ -72,6 +81,8 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
             borderColor = getColor(R.styleable.SquircleView_squircle_border_color, DEFAULT_COLOR_VALUE)
             borderWidth = getDimension(R.styleable.SquircleView_squircle_border_width, 0f)
             rippleEnabled = getBoolean(R.styleable.SquircleView_squircle_ripple_enabled, view !is SquircleImageView)
+            rippleDrawable = getDrawable(R.styleable.SquircleView_squircle_ripple_drawable) ?: context.getDefaultRippleDrawable()
+            cornerSmoothing = getInteger(R.styleable.SquircleView_squircle_corner_smoothing_percentage, DEFAULT_CORNER_SMOOTHING.toInt())
 
             recycle()
         }
@@ -109,7 +120,12 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
                 if (!rippleEnabled) {
                     // FIXME it seems like the ConstraintLayout itself has a bug where, if no background nor foreground is set,
                     //  the view will appear with a width of 0 and height of 0, and never call the onDraw method
-                    view.foreground = ContextCompat.getDrawable(context, R.drawable.transparent_foreground)
+                    rippleDrawable = context.getTransparentRippleDrawable()
+                    view.foreground = context.getTransparentRippleDrawable()
+                } else {
+                    if (rippleDrawable != null && view.hasOnClickListeners()) {
+                        view.foreground = rippleDrawable
+                    }
                 }
             }
 
@@ -127,9 +143,9 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
             view.isFocusable = true
 
             // Set ripple if enabled
-            if (rippleEnabled) {
-                val ripple = TypedValue().also { context.theme.resolveAttribute(android.R.attr.selectableItemBackground, it, true) }.resourceId
-                view.foreground = ContextCompat.getDrawable(context, ripple)
+            if (rippleEnabled && view.hasOnClickListeners()) {
+                rippleDrawable = context.getDefaultRippleDrawable()
+                view.foreground = rippleDrawable
             }
 
             if (view is SquircleButton) {

@@ -5,6 +5,8 @@ import android.graphics.RectF
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.PathShape
 import android.view.View
+import androidx.annotation.IntRange
+import app.juky.squircleview.data.Constants.DEFAULT_CORNER_SMOOTHING
 import com.google.android.material.shape.CornerSize
 import com.google.android.material.shape.CutCornerTreatment
 import com.google.android.material.shape.ShapeAppearanceModel
@@ -15,8 +17,14 @@ import com.google.android.material.shape.ShapePath
  * instead of the custom view, allowing you to use the default shapes in Android.
  */
 object SquircleShape {
-    fun getSquirclePath(rect: RectF, width: Int, height: Int): ShapePath {
-        val radius = SquirclePath.getRadiusByHeightOrWidth(height, width)
+    fun getSquirclePath(
+        rect: RectF,
+        width: Int,
+        height: Int,
+        @IntRange(from = 0, to = DEFAULT_CORNER_SMOOTHING)
+        cornerSmoothing: Int = DEFAULT_CORNER_SMOOTHING.toInt()
+    ): ShapePath {
+        val radius = SquirclePath.getRadiusByHeightOrWidth(height, width, cornerSmoothing)
 
         val startX = rect.left
         val endX = rect.right
@@ -77,14 +85,22 @@ object SquircleShape {
         return path
     }
 
-    fun getShapeAppearance(): ShapeAppearanceModel.Builder =
-        ShapeAppearanceModel.builder().setAllCorners(SquircleCornerTreatment())
+    fun getShapeAppearance(
+        @IntRange(from = 0, to = DEFAULT_CORNER_SMOOTHING)
+        cornerSmoothing: Int = DEFAULT_CORNER_SMOOTHING.toInt()
+    ): ShapeAppearanceModel.Builder =
+        ShapeAppearanceModel.builder().setAllCorners(SquircleCornerTreatment(cornerSmoothing))
 
-    fun getShapeDrawable(view: View): ShapeDrawable {
+    fun getShapeDrawable(
+        view: View,
+        @IntRange(from = 0, to = DEFAULT_CORNER_SMOOTHING)
+        cornerSmoothing: Int = DEFAULT_CORNER_SMOOTHING.toInt()
+    ): ShapeDrawable {
         val path = SquirclePath.getSquirclePath(
             rect = RectF(0f, 0f, view.width.toFloat(), view.height.toFloat()),
             width = view.width,
-            height = view.height
+            height = view.height,
+            cornerSmoothing = cornerSmoothing
         )
 
         return object : ShapeDrawable(PathShape(path, view.width.toFloat(), view.height.toFloat())) {
@@ -94,7 +110,8 @@ object SquircleShape {
                     SquirclePath.getSquirclePath(
                         RectF(0f, 0f, bounds.width().toFloat(), bounds.height().toFloat()),
                         width = bounds.width(),
-                        height = bounds.height()
+                        height = bounds.height(),
+                        cornerSmoothing = cornerSmoothing
                     ),
                     bounds.width().toFloat(),
                     bounds.height().toFloat()
@@ -106,11 +123,14 @@ object SquircleShape {
     /**
      * CornerTreatment used to apply a treatment to the corners of buttons, images, constraintlayouts, etc.
      */
-    class SquircleCornerTreatment : CutCornerTreatment() {
+    class SquircleCornerTreatment(
+        @IntRange(from = 0, to = DEFAULT_CORNER_SMOOTHING)
+        private val cornerSmoothing: Int = DEFAULT_CORNER_SMOOTHING.toInt()
+    ) : CutCornerTreatment() {
         override fun getCornerPath(shapePath: ShapePath, angle: Float, interpolation: Float, bounds: RectF, size: CornerSize) {
             val startX = 0f
             val startY = 0f
-            val radius = SquirclePath.getRadiusByHeightOrWidth(bounds.height().toInt(), bounds.width().toInt())
+            val radius = SquirclePath.getRadiusByHeightOrWidth(bounds.height().toInt(), bounds.width().toInt(), cornerSmoothing)
 
             shapePath.lineTo(startX, startY + radius)
             shapePath.reset(0f, radius)

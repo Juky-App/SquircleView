@@ -1,16 +1,12 @@
 package app.juky.squircleview.sample
 
-import android.graphics.Color
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toBitmap
-import app.juky.squircleview.data.GradientDirection
-import app.juky.squircleview.data.SquircleCore
 import app.juky.squircleview.sample.databinding.ActivityMainBinding
 import app.juky.squircleview.utils.SquircleShape
 import app.juky.squircleview.views.SquircleImageView
@@ -32,6 +28,28 @@ class MainActivity : AppCompatActivity() {
             loadImageWithResourceLoading()
         }, 5000)
 
+        // Slide the seeker to change the corner smoothing
+        binding.seekerValue.text = binding.seeker.progress.toString()
+        binding.seeker.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                binding.tester.shapeAppearanceModel = SquircleShape.getShapeAppearance(progress).build()
+                binding.firstRowItem.style.setCornerSmoothing(progress)
+                binding.secondRowItem.style.setCornerSmoothing(progress)
+                binding.thirdRowItem.style.setCornerSmoothing(progress)
+                binding.fourthRowItem.style.setCornerSmoothing(progress)
+                binding.normalButton.style.setCornerSmoothing(progress)
+                binding.normalNoGradientButton.style.setCornerSmoothing(progress)
+                binding.imageButton.style.setCornerSmoothing(progress)
+                binding.normalButtonWithImage.style.setCornerSmoothing(progress)
+                binding.verticalButton.style.setCornerSmoothing(progress)
+                binding.seekerValue.text = progress.toString()
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+        })
+
         // The methods down below are native ShapeDrawable and ShapeAppearance usages
         binding.buttonWithShapeDrawable.shapeAppearanceModel = SquircleShape.getShapeAppearance().build()
         binding.imageWithShapeAppearance.shapeAppearanceModel = SquircleShape.getShapeAppearance().build()
@@ -40,6 +58,17 @@ class MainActivity : AppCompatActivity() {
                 this.color = ContextCompat.getColor(this@MainActivity, R.color.teal_700)
             }
         }
+
+        binding.normalButton.setOnClickListener {
+            // Just demonstrating a ripple will only work with a click listener
+        }
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            // Just demonstrating a ripple will only work with a click listener
+            binding.normalNoGradientButton.setOnClickListener {
+                // Nothing
+            }
+        }, 5000)
 
         // Examples of changing the view properties
         // binding.normalButton.style.backgroundImage = ContextCompat.getDrawable(this, R.drawable.first_image)?.toBitmap()
@@ -58,6 +87,7 @@ class MainActivity : AppCompatActivity() {
         // binding.normalButton.style.borderColorRes = R.color.purple_500
         // binding.normalButton.style.borderWidth = 20f
         // binding.normalButton.style.rippleEnabled = false
+        // binding.normalButton.style.rippleDrawable = ContextCompat.getDrawable(this, R.drawable.ripple)
 
         // binding.normalButton.style.setBackgroundImage(ContextCompat.getDrawable(this, R.drawable.second_image))
         // binding.normalButton.style.setBackgroundImage(R.drawable.third_image)

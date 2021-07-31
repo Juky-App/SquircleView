@@ -67,7 +67,7 @@ Also add the SquircleView dependency to your app build.gradle
 
 ```groovy
 dependencies {
-    implementation "app.juky:squircleview:0.0.3"
+    implementation "app.juky:squircleview:0.0.4"
 }
 ```
 
@@ -159,19 +159,20 @@ Glide.with(this).load(R.drawable.my_image)
 
 ### Attributes
 
-| Attribute                       | Type      | Default                            | Description                                             |
-|---------------------------------|-----------|------------------------------------|---------------------------------------------------------|
-| squircle_background_image       | reference |                                    | Background image of view                                |
-| squircle_background_color       | color     | #000000                            | Background color of view                                |
-| squircle_gradient_drawable      | reference |                                    | Gradient drawable displayed in view                     |
-| squircle_gradient_start_color   | color     |                                    | Gradient start color                                    |
-| squircle_gradient_end_color     | color     |                                    | Gradient end color                                      |
-| squircle_gradient_direction     | enum      | TOP_LEFT_BOTTOM_RIGHT              | Direction of the gradient (only for the color gradient) |
-| squircle_shadow_elevation       | dimension | Default of the super view          | Shadow elevation                                        |
-| squircle_shadow_elevation_color | color     | #42000000                          | Shadow elevation color                                  |
-| squircle_border_color           | color     |                                    | Border color                                            |
-| squircle_border_width           | dimension | 0                                  | Border width                                            |
-| squircle_ripple_enabled         | boolean   | true (false for SquircleImageView) | Ripple enabled or disabled                              |
+| Attribute                            | Type      | Default                            | Description                                                |
+|--------------------------------------|-----------|------------------------------------|------------------------------------------------------------|
+| squircle_background_image            | reference |                                    | Background image of view                                   |
+| squircle_background_color            | color     | #000000                            | Background color of view                                   |
+| squircle_gradient_drawable           | reference |                                    | Gradient drawable displayed in view                        |
+| squircle_gradient_start_color        | color     |                                    | Gradient start color                                       |
+| squircle_gradient_end_color          | color     |                                    | Gradient end color                                         |
+| squircle_gradient_direction          | enum      | TOP_LEFT_BOTTOM_RIGHT              | Direction of the gradient (only for the color gradient)    |
+| squircle_shadow_elevation            | dimension | Default of the super view          | Shadow elevation                                           |
+| squircle_shadow_elevation_color      | color     | #42000000                          | Shadow elevation color                                     |
+| squircle_border_color                | color     |                                    | Border color                                               |
+| squircle_border_width                | dimension | 0                                  | Border width                                               |
+| squircle_ripple_enabled              | boolean   | true (false for SquircleImageView) | Ripple enabled or disabled                                 |
+| squircle_corner_smoothing_percentage | integer   | 100%                               | Change the corner smoothing, a Squircle is 100% by default |
 
 ### Methods
 
@@ -197,10 +198,14 @@ var borderWidth: Float
 var rippleEnabled: Boolean
 
 // Methods
+fun setCornerSmoothing(cornerSmoothing: Int)
 fun setBackgroundImage(drawable: Drawable?)
 fun setBackgroundImage(resId: Int)
 fun setGradientDrawable(resId: Int)
 fun setGradientDirection(angle: Int)
+
+
+fun getCornerSmoothing(): Int
 ```
 
 #### Example:
@@ -209,6 +214,11 @@ val button = findViewById<SquircleButton>(R.id.button)
 button.style.backgroundColor = Color.RED
 button.style.backgroundColorRes = R.color.teal_200
 ```
+
+### Notes:
+
+You might notice that there's no ripple, even though it has been enabled or a drawable has been set. This is because the
+ripple will only be shown once you've set a click listener.
 
 ## Android Shapes
 
@@ -304,7 +314,10 @@ Check out the [CONTRIBUTING.md](CONTRIBUTING.md) file to know more
 <!-- TODO OWN APP -->
 
 ## Changelog
-
+- V0.0.4 (31 july 2021)
+    - Added support for customizing the corner smoothing (e.g. make the Squircle less rounded)
+    - Added support for custom ripple drawables
+    - Ripples will now only show up if any click listener is set
 - V0.0.3 (19 june 2021)
     - Added support for programmatically setting the view's properties
 - V0.0.2 (12 june 2021):

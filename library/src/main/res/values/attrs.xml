@@ -24,6 +24,9 @@
     <attr name="squircle_border_width" format="dimension" />
 
     <attr name="squircle_ripple_enabled" format="boolean" />
+    <attr name="squircle_ripple_drawable" format="reference" />
+
+    <attr name="squircle_corner_smoothing_percentage" value="100" format="integer" />
 
     <!-- Android attrs do not have support for a parent, thus we need to repeat all attributes.. -->
     <declare-styleable name="SquircleView">
@@ -38,6 +41,8 @@
         <attr name="squircle_border_color" />
         <attr name="squircle_border_width" />
         <attr name="squircle_ripple_enabled" />
+        <attr name="squircle_ripple_drawable" />
+        <attr name="squircle_corner_smoothing_percentage" />
     </declare-styleable>
 
     <declare-styleable name="SquircleButton">
@@ -52,6 +57,8 @@
         <attr name="squircle_border_color" />
         <attr name="squircle_border_width" />
         <attr name="squircle_ripple_enabled" />
+        <attr name="squircle_ripple_drawable" />
+        <attr name="squircle_corner_smoothing_percentage" />
     </declare-styleable>
 
     <declare-styleable name="SquircleConstraintLayout">
@@ -66,6 +73,8 @@
         <attr name="squircle_border_color" />
         <attr name="squircle_border_width" />
         <attr name="squircle_ripple_enabled" />
+        <attr name="squircle_ripple_drawable" />
+        <attr name="squircle_corner_smoothing_percentage" />
     </declare-styleable>
 
     <declare-styleable name="SquircleImageView">
@@ -80,6 +89,8 @@
         <attr name="squircle_border_color" />
         <attr name="squircle_border_width" />
         <attr name="squircle_ripple_enabled" />
+        <attr name="squircle_ripple_drawable" />
+        <attr name="squircle_corner_smoothing_percentage" />
     </declare-styleable>
 
     <declare-styleable name="Default">
