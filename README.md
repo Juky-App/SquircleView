@@ -314,7 +314,10 @@ Check out the [CONTRIBUTING.md](CONTRIBUTING.md) file to know more
 <!-- TODO OWN APP -->
 
 ## Changelog
-
+- V0.0.4 (31 july 2021)
+    - Added support for customizing the corner smoothing (e.g. make the Squircle less rounded)
+    - Added support for custom ripple drawables
+    - Ripples will now only show up if any click listener is set
 - V0.0.3 (19 june 2021)
     - Added support for programmatically setting the view's properties
 - V0.0.2 (12 june 2021):
