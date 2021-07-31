@@ -13,11 +13,13 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import androidx.annotation.ColorInt
+import androidx.annotation.IntRange
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.widget.TextViewCompat.setTextAppearance
 import app.juky.squircleview.R
+import app.juky.squircleview.data.Constants.DEFAULT_CORNER_SMOOTHING
 import app.juky.squircleview.utils.SquircleGradient.DEFAULT_COLOR_VALUE
 import app.juky.squircleview.utils.SquircleShadowProvider.getShadowProvider
 import app.juky.squircleview.utils.getDefaultRippleDrawable
@@ -57,6 +59,9 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
     var rippleEnabled: Boolean
     var rippleDrawable: Drawable?
 
+    @IntRange(from = 0, to = DEFAULT_CORNER_SMOOTHING)
+    var cornerSmoothing: Int
+
     init {
         context.obtainStyledAttributes(attrs, R.styleable.SquircleView).apply {
             backgroundImage = getDrawable(R.styleable.SquircleView_squircle_background_image)?.toBitmap()
@@ -77,6 +82,7 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
             borderWidth = getDimension(R.styleable.SquircleView_squircle_border_width, 0f)
             rippleEnabled = getBoolean(R.styleable.SquircleView_squircle_ripple_enabled, view !is SquircleImageView)
             rippleDrawable = getDrawable(R.styleable.SquircleView_squircle_ripple_drawable) ?: context.getDefaultRippleDrawable()
+            cornerSmoothing = getInteger(R.styleable.SquircleView_squircle_corner_smoothing_percentage, DEFAULT_CORNER_SMOOTHING.toInt())
 
             recycle()
         }
