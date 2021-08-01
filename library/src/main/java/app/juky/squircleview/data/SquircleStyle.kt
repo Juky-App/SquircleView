@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import app.juky.squircleview.utils.SquircleGradient
 import app.juky.squircleview.utils.SquircleShadowProvider.getShadowProvider
+import app.juky.squircleview.utils.getDefaultRippleDrawable
 import app.juky.squircleview.utils.getTransparentRippleDrawable
 
 /**
@@ -209,7 +210,7 @@ class SquircleStyle(val context: Context, val view: View, internal val core: Squ
             core.rippleEnabled = enabled
 
             if (rippleEnabled && view.hasOnClickListeners()) {
-                view.foreground = rippleDrawable
+                view.foreground = rippleDrawable ?: context.getDefaultRippleDrawable()
             } else {
                 view.foreground = context.getTransparentRippleDrawable()
             }

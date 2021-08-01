@@ -67,7 +67,7 @@ Also add the SquircleView dependency to your app build.gradle
 
 ```groovy
 dependencies {
-    implementation "app.juky:squircleview:0.0.4"
+    implementation "app.juky:squircleview:0.4.1"
 }
 ```
 
@@ -314,6 +314,9 @@ Check out the [CONTRIBUTING.md](CONTRIBUTING.md) file to know more
 <!-- TODO OWN APP -->
 
 ## Changelog
+- V0.4.1 (1 august 2021)
+    - Fixed issues with backgrounds because of the recent ripple improvements
+    - Changed version numbering to follow the major.minor.patch version naming
 - V0.0.4 (31 july 2021)
     - Added support for customizing the corner smoothing (e.g. make the Squircle less rounded)
     - Added support for custom ripple drawables

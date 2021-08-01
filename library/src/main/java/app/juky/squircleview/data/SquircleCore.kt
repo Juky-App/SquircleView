@@ -81,7 +81,7 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
             borderColor = getColor(R.styleable.SquircleView_squircle_border_color, DEFAULT_COLOR_VALUE)
             borderWidth = getDimension(R.styleable.SquircleView_squircle_border_width, 0f)
             rippleEnabled = getBoolean(R.styleable.SquircleView_squircle_ripple_enabled, view !is SquircleImageView)
-            rippleDrawable = getDrawable(R.styleable.SquircleView_squircle_ripple_drawable) ?: context.getDefaultRippleDrawable()
+            rippleDrawable = getDrawable(R.styleable.SquircleView_squircle_ripple_drawable)
             cornerSmoothing = getInteger(R.styleable.SquircleView_squircle_corner_smoothing_percentage, DEFAULT_CORNER_SMOOTHING.toInt())
 
             recycle()
@@ -117,15 +117,14 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
             }
 
             if (view is SquircleConstraintLayout) {
-                if (!rippleEnabled) {
-                    // FIXME it seems like the ConstraintLayout itself has a bug where, if no background nor foreground is set,
-                    //  the view will appear with a width of 0 and height of 0, and never call the onDraw method
-                    rippleDrawable = context.getTransparentRippleDrawable()
-                    view.foreground = context.getTransparentRippleDrawable()
-                } else {
+                if (rippleEnabled) {
                     if (rippleDrawable != null && view.hasOnClickListeners()) {
                         view.foreground = rippleDrawable
                     }
+                } else {
+                    // FIXME it seems like the ConstraintLayout itself has a bug where, if no background nor foreground is set,
+                    //  the view will appear with a width of 0 and height of 0, and never call the onDraw method
+                    view.foreground = context.getTransparentRippleDrawable()
                 }
             }
 
@@ -144,8 +143,9 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
 
             // Set ripple if enabled
             if (rippleEnabled && view.hasOnClickListeners()) {
-                rippleDrawable = context.getDefaultRippleDrawable()
-                view.foreground = rippleDrawable
+                view.foreground = rippleDrawable ?: context.getDefaultRippleDrawable()
+            } else {
+                view.foreground = context.getTransparentRippleDrawable()
             }
 
             if (view is SquircleButton) {
