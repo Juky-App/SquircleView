@@ -67,7 +67,7 @@ Also add the SquircleView dependency to your app build.gradle
 
 ```groovy
 dependencies {
-    implementation "app.juky:squircleview:0.4.1"
+    implementation "app.juky:squircleview:0.4.2"
 }
 ```
 
@@ -158,7 +158,9 @@ Glide.with(this).load(R.drawable.my_image)
 ```
 
 ### Attributes
-The following attributes can be used in your styles.xml / themes.xml or as attribute of the view in your layout xml files.
+
+The following attributes can be used in your styles.xml / themes.xml or as attribute of the view in your layout xml
+files.
 
 | Attribute                            | Type      | Default                            | Description                                                |
 |--------------------------------------|-----------|------------------------------------|------------------------------------------------------------|
@@ -320,6 +322,9 @@ Check out the [CONTRIBUTING.md](CONTRIBUTING.md) file to know more
 
 ## Changelog
 
+- V0.4.2 (4 august 2021)
+    - Fixed issue where the text appearance of the button would override any custom styling set for the following
+      attributes: android:fontFamily, android:textStyle, android:textAllCaps, android:textSize, android:letterSpacing
 - V0.4.1 (1 august 2021)
     - Fixed issues with backgrounds because of the recent ripple improvements
     - Changed version numbering to follow the major.minor.patch version naming

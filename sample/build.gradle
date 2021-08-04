@@ -54,7 +54,7 @@ dependencies {
     implementation project(':library')
 
     // Test the library using the Maven central / local dependency
-    //implementation 'app.juky:squircleview:0.4.1'
+    //implementation 'app.juky:squircleview:0.4.2'
 
     // Image loading
     implementation 'com.github.bumptech.glide:glide:4.12.0'
