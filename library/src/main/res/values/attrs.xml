@@ -94,8 +94,6 @@
     </declare-styleable>
 
     <declare-styleable name="Default">
-        <attr name="android:textColor" />
-        <attr name="fontFamily" />
         <attr name="android:fontFamily" />
         <attr name="android:textStyle" />
         <attr name="android:textAllCaps" />

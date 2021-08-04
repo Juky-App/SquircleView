@@ -177,7 +177,7 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
         // Restore original text color which is overridden by the text appearance
         context.obtainStyledAttributes(attrs, R.styleable.Default).apply {
             // Set the fontFamily and textStyle, which defaults to sans-serif-medium
-            val fontFamily = getString(R.styleable.Default_android_fontFamily) ?: getString(R.styleable.Default_fontFamily) ?: BUTTON_TEXT_APPEARANCE_DEFAULT_FONT_FAMILY
+            val fontFamily = getString(R.styleable.Default_android_fontFamily) ?: BUTTON_TEXT_APPEARANCE_DEFAULT_FONT_FAMILY
             view.typeface = Typeface.create(
                 fontFamily, getInt(R.styleable.Default_android_textStyle, BUTTON_TEXT_APPEARANCE_DEFAULT_TEXT_STYLE)
             )
