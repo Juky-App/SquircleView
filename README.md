@@ -140,8 +140,8 @@ complex layout with texts and icons.
 
 #### Load image
 
-You can load an image in every view using the `setBackgroundImage` method, but you can also use your favorite image loading
-library to load it in for you. We have out of the box support for Glide, Picasso, Fresco, Coil, etc.
+You can load an image in every view using the `setBackgroundImage` method, but you can also use your favorite image
+loading library to load it in for you. We have out of the box support for Glide, Picasso, Fresco, Coil, etc.
 
 ##### Load image normally
 
@@ -153,11 +153,12 @@ my_squircle_image_view.setBackgroundImage(ContextCompat.getDrawable(context, R.d
 
 ```kotlin
 Glide.with(this).load(R.drawable.my_image)
-	.diskCacheStrategy(DiskCacheStrategy.ALL)
-	.into(my_squircle_image_view)
+    .diskCacheStrategy(DiskCacheStrategy.ALL)
+    .into(my_squircle_image_view)
 ```
 
 ### Attributes
+The following attributes can be used in your styles.xml / themes.xml or as attribute of the view in your layout xml files.
 
 | Attribute                            | Type      | Default                            | Description                                                |
 |--------------------------------------|-----------|------------------------------------|------------------------------------------------------------|
@@ -171,12 +172,15 @@ Glide.with(this).load(R.drawable.my_image)
 | squircle_shadow_elevation_color      | color     | #42000000                          | Shadow elevation color                                     |
 | squircle_border_color                | color     |                                    | Border color                                               |
 | squircle_border_width                | dimension | 0                                  | Border width                                               |
-| squircle_ripple_enabled              | boolean   | true (false for SquircleImageView) | Ripple enabled or disabled                                 |
+| squircle_ripple_enabled              | boolean   | true (false for SquircleImageView) | Ripple enabled or disabled (when a click listener is set)  |
+| squircle_ripple_drawable             | reference | ?attr/selectableItemBackground     | Drawable used for drawing the ripple                       |
 | squircle_corner_smoothing_percentage | integer   | 100%                               | Change the corner smoothing, a Squircle is 100% by default |
 
 ### Methods
 
-Properties of the views can be modified by setting using following variables / methods. They can be accessed via the `style` property of the view. Note: Only supply color resources to the variables with the suffix `Res`, otherwise your colors won't work.
+Properties of the views can be modified by setting using following variables / methods. They can be accessed via
+the `style` property of the view. Note: Only supply color resources to the variables with the suffix `Res`, otherwise
+your colors won't work.
 
 ```kotlin
 // Property getters / setters
@@ -209,6 +213,7 @@ fun getCornerSmoothing(): Int
 ```
 
 #### Example:
+
 ```
 val button = findViewById<SquircleButton>(R.id.button)
 button.style.backgroundColor = Color.RED
@@ -240,11 +245,11 @@ binding.buttonWithShapeDrawable.shapeAppearanceModel = SquircleShape.getShapeApp
 ```kotlin
 // The background color is not preserved, so it needs to be re-applied
 binding.constraintLayoutWithShapeDrawable.background =
-	SquircleShape.getShapeDrawable(binding.constraintLayoutWithShapeDrawable).apply {
-		this.paint.apply {
-			this.color = ContextCompat.getColor(this, R.color.my_color)
-		}
-	}
+    SquircleShape.getShapeDrawable(binding.constraintLayoutWithShapeDrawable).apply {
+        this.paint.apply {
+            this.color = ContextCompat.getColor(this, R.color.my_color)
+        }
+    }
 ```
 
 ### Methods and classes
@@ -314,6 +319,7 @@ Check out the [CONTRIBUTING.md](CONTRIBUTING.md) file to know more
 <!-- TODO OWN APP -->
 
 ## Changelog
+
 - V0.4.1 (1 august 2021)
     - Fixed issues with backgrounds because of the recent ripple improvements
     - Changed version numbering to follow the major.minor.patch version naming
