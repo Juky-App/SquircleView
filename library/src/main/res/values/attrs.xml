@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Background image of view -->
     <attr name="squircle_background_image" format="reference" />
+
+    <!-- Background color of view -->
     <attr name="squircle_background_color" format="color" />
 
+    <!-- Gradient drawable displayed in view -->
     <attr name="squircle_gradient_drawable" format="reference" />
+
+    <!-- Gradient start color -->
     <attr name="squircle_gradient_start_color" format="color" />
+
+    <!-- Gradient end color -->
     <attr name="squircle_gradient_end_color" format="color" />
+
+    <!-- Direction of the gradient (only for the color gradient) -->
     <attr name="squircle_gradient_direction">
         <enum name="top_to_bottom" value="0" />
         <enum name="top_right_to_bottom_left" value="1" />
@@ -17,16 +27,26 @@
         <enum name="top_left_to_bottom_right" value="7" />
     </attr>
 
+    <!-- Shadow elevation -->
     <attr name="squircle_shadow_elevation" format="dimension" />
+
+    <!-- Shadow elevation color -->
     <attr name="squircle_shadow_elevation_color" format="color" />
 
+    <!-- Border color -->
     <attr name="squircle_border_color" format="color" />
+
+    <!-- Border width -->
     <attr name="squircle_border_width" format="dimension" />
 
+    <!-- Ripple enabled or disabled -->
     <attr name="squircle_ripple_enabled" format="boolean" />
+
+    <!-- Drawable used for drawing the ripple -->
     <attr name="squircle_ripple_drawable" format="reference" />
 
-    <attr name="squircle_corner_smoothing_percentage" value="100" format="integer" />
+    <!-- Change the corner smoothing, a Squircle is 100% by default -->
+    <attr name="squircle_corner_smoothing_percentage" format="integer" value="100" />
 
     <!-- Android attrs do not have support for a parent, thus we need to repeat all attributes.. -->
     <declare-styleable name="SquircleView">
@@ -94,6 +114,10 @@
     </declare-styleable>
 
     <declare-styleable name="Default">
-        <attr name="android:textColor" />
+        <attr name="android:fontFamily" />
+        <attr name="android:textStyle" />
+        <attr name="android:textAllCaps" />
+        <attr name="android:textSize" />
+        <attr name="android:letterSpacing" />
     </declare-styleable>
 </resources>
