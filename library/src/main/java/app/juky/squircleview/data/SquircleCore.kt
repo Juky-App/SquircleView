@@ -1,10 +1,7 @@
 package app.juky.squircleview.data
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Paint
-import android.graphics.Path
-import android.graphics.RectF
+import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
@@ -17,11 +14,11 @@ import androidx.annotation.IntRange
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
-import androidx.core.widget.TextViewCompat.setTextAppearance
 import app.juky.squircleview.R
 import app.juky.squircleview.data.Constants.DEFAULT_CORNER_SMOOTHING
 import app.juky.squircleview.utils.SquircleGradient.DEFAULT_COLOR_VALUE
 import app.juky.squircleview.utils.SquircleShadowProvider.getShadowProvider
+import app.juky.squircleview.utils.TextAllCapsTransformationMethod
 import app.juky.squircleview.utils.getDefaultRippleDrawable
 import app.juky.squircleview.utils.getTransparentRippleDrawable
 import app.juky.squircleview.views.SquircleButton
@@ -150,20 +147,68 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
 
             if (view is SquircleButton) {
                 view.gravity = Gravity.CENTER_HORIZONTAL or Gravity.CENTER_VERTICAL
-                val text = TypedValue().also { context.theme.resolveAttribute(android.R.attr.textAppearanceButton, it, true) }.resourceId
-                setTextAppearance(view, text)
-
-                // Restore original text color which is overridden by the text appearance
-                context.obtainStyledAttributes(attrs, R.styleable.Default).apply {
-                    view.setTextColor(
-                        getColor(
-                            R.styleable.Default_android_textColor,
-                            ContextCompat.getColor(context, R.color.black)
-                        )
-                    )
-                    recycle()
-                }
+                loadButtonTextAppearance(context, view, attrs)
             }
         }
+    }
+
+    /**
+     * Setting the text appearance programmatically unfortunately overrides all user-defined styles. Therefore,
+     * the decision has been made to apply the attributes in the style programmatically
+     *
+     * Original code:
+     * val text = TypedValue().also { context.theme.resolveAttribute(android.R.attr.textAppearanceButton, it, true) }.resourceId
+     * setTextAppearance(view, text)
+     *
+     * Retrieved from com.google.android.material:material:1.4.0/res/values/values.xml:
+     * android.R.attr.textAppearanceButton (which as has `Base.TextAppearance.MaterialComponents.Button` as parent):
+     * <style name="Base.TextAppearance.MaterialComponents.Button" parent="TextAppearance.AppCompat.Button">
+     *     <!-- Fake Roboto Medium. -->
+     *     <item name="fontFamily">sans-serif-medium</item>
+     *     <item name="android:fontFamily">sans-serif-medium</item>
+     *     <item name="android:textStyle">bold</item>
+     *     <item name="android:textAllCaps">true</item>
+     *     <item name="android:textSize">14sp</item>
+     *     <item name="android:letterSpacing">0.0892857143</item>
+     * </style>
+     *
+     */
+    private fun loadButtonTextAppearance(context: Context, view: SquircleButton, attrs: AttributeSet?) {
+        // Restore original text color which is overridden by the text appearance
+        context.obtainStyledAttributes(attrs, R.styleable.Default).apply {
+            // Set the fontFamily and textStyle, which defaults to sans-serif-medium
+            val fontFamily = getString(R.styleable.Default_android_fontFamily) ?: BUTTON_TEXT_APPEARANCE_DEFAULT_FONT_FAMILY
+            view.typeface = Typeface.create(
+                fontFamily, getInt(R.styleable.Default_android_textStyle, BUTTON_TEXT_APPEARANCE_DEFAULT_TEXT_STYLE)
+            )
+
+            // Set the text size, which defaults to 14sp
+            val textSize = getDimensionPixelSize(R.styleable.Default_android_textSize, -1)
+            if (textSize == -1) {
+                view.setTextSize(TypedValue.COMPLEX_UNIT_SP, BUTTON_TEXT_APPEARANCE_DEFAULT_TEXT_SIZE_IN_SP)
+            } else {
+                view.textSize = textSize.toFloat()
+            }
+
+            // Set the textAllCaps
+            if (getBoolean(R.styleable.Default_android_textAllCaps, BUTTON_TEXT_APPEARANCE_DEFAULT_ALL_CAPS)) {
+                view.transformationMethod = TextAllCapsTransformationMethod()
+            } else {
+                view.transformationMethod = null
+            }
+
+            // Set the letter spacing, which has a weird default value
+            view.letterSpacing = getFloat(R.styleable.Default_android_letterSpacing, BUTTON_TEXT_APPEARANCE_DEFAULT_LETTER_SPACING)
+
+            recycle()
+        }
+    }
+
+    companion object {
+        const val BUTTON_TEXT_APPEARANCE_DEFAULT_FONT_FAMILY = "sans-serif-medium"
+        const val BUTTON_TEXT_APPEARANCE_DEFAULT_TEXT_STYLE = Typeface.NORMAL
+        const val BUTTON_TEXT_APPEARANCE_DEFAULT_TEXT_SIZE_IN_SP = 14f
+        const val BUTTON_TEXT_APPEARANCE_DEFAULT_ALL_CAPS = true
+        const val BUTTON_TEXT_APPEARANCE_DEFAULT_LETTER_SPACING = 0.0892857143f
     }
 }
