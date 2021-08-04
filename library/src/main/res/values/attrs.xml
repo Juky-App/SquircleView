@@ -26,7 +26,7 @@
     <attr name="squircle_ripple_enabled" format="boolean" />
     <attr name="squircle_ripple_drawable" format="reference" />
 
-    <attr name="squircle_corner_smoothing_percentage" value="100" format="integer" />
+    <attr name="squircle_corner_smoothing_percentage" format="integer" value="100" />
 
     <!-- Android attrs do not have support for a parent, thus we need to repeat all attributes.. -->
     <declare-styleable name="SquircleView">
@@ -95,5 +95,11 @@
 
     <declare-styleable name="Default">
         <attr name="android:textColor" />
+        <attr name="fontFamily" />
+        <attr name="android:fontFamily" />
+        <attr name="android:textStyle" />
+        <attr name="android:textAllCaps" />
+        <attr name="android:textSize" />
+        <attr name="android:letterSpacing" />
     </declare-styleable>
 </resources>
