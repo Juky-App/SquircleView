@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
                             path = getSquirclePath(size, cornerSmoothing = 80),
                             brush = borderGradient,
                             style = Stroke(
-                                width = 1.dp.toPx()
+                                width = 3.dp.toPx()
                             )
                         )
                     },
