@@ -67,7 +67,7 @@ Also add the SquircleView dependency to your app build.gradle
 
 ```groovy
 dependencies {
-    implementation "app.juky:squircleview:0.4.2"
+    implementation "app.juky:squircleview:0.5.0"
 }
 ```
 
@@ -322,6 +322,11 @@ Check out the [CONTRIBUTING.md](CONTRIBUTING.md) file to know more
 
 ## Changelog
 
+- V0.5.0 (8 april 2022)
+    - Updated Gradle, Kotlin and dependencies
+    - Added Jetpack Compose Path components and paths
+    - Fixed SquircleImageView crash #15
+    - Fixed issue where clickable and focusable were set to true by default
 - V0.4.2 (4 august 2021)
     - Fixed issue where the text appearance of the button would override any custom styling set for the following
       attributes: android:fontFamily, android:textStyle, android:textAllCaps, android:textSize, android:letterSpacing
