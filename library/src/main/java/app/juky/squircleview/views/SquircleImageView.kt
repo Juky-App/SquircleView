@@ -71,6 +71,7 @@ class SquircleImageView(context: Context, attrs: AttributeSet?) : AppCompatImage
     // Support image library view loading
     override fun setImageDrawable(drawable: Drawable?) {
         drawable ?: return
+        style ?: return
         style.setBackgroundImage(drawable)
     }
 
