@@ -304,5 +304,14 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/constraintLayoutWithShapeDrawableCompose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/constraintLayoutWithShapeDrawable" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -35,14 +35,12 @@ if (pgpKeyContent != null) {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 32
+    buildToolsVersion '32.0.0'
 
     defaultConfig {
         minSdkVersion 23
-        targetSdkVersion 30
-        versionCode 1
-        versionName "0.4.2"
+        targetSdkVersion 32
         project.archivesBaseName = "SquircleView"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -59,10 +57,11 @@ android {
 dependencies {
     // Default
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation("androidx.compose.material:material:1.1.1")
 
     // Testing
     testImplementation 'junit:junit:4.13.2'

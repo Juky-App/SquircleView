@@ -6,8 +6,25 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.material.Text
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import app.juky.squircleview.sample.databinding.ActivityMainBinding
+import app.juky.squircleview.utils.SquircleComposeShape.SquircleComposeShape
+import app.juky.squircleview.utils.SquircleComposeShape.getSquirclePath
 import app.juky.squircleview.utils.SquircleShape
 import app.juky.squircleview.views.SquircleImageView
 import com.bumptech.glide.Glide
@@ -56,6 +73,39 @@ class MainActivity : AppCompatActivity() {
         binding.constraintLayoutWithShapeDrawable.background = SquircleShape.getShapeDrawable(binding.constraintLayoutWithShapeDrawable).apply {
             this.paint.apply {
                 this.color = ContextCompat.getColor(this@MainActivity, R.color.teal_700)
+            }
+        }
+        binding.constraintLayoutWithShapeDrawableCompose.setContent {
+            val borderGradient = Brush.linearGradient(
+                colors = listOf(
+                    colorResource(id = R.color.teal_200),
+                    colorResource(id = R.color.teal_700)
+                )
+            )
+
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(150.dp)
+                    .graphicsLayer(
+                        shadowElevation = 8f,
+                        shape = SquircleComposeShape(cornerSmoothing = 80),
+                        clip = true
+                    )
+                    .background(color = colorResource(id = R.color.purple_200))
+                    .drawBehind {
+                        drawPath(
+                            path = getSquirclePath(size, cornerSmoothing = 80),
+                            brush = borderGradient,
+                            style = Stroke(
+                                width = 3.dp.toPx()
+                            )
+                        )
+                    },
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(stringResource(R.string.app_name))
             }
         }
 

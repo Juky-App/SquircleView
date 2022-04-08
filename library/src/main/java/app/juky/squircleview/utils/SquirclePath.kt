@@ -8,7 +8,7 @@ import app.juky.squircleview.data.Constants.MAX_DEFAULT_CORNER_SMOOTHING
 import kotlin.math.min
 
 object SquirclePath {
-    internal fun getRadiusByHeightOrWidth(
+    fun getRadiusByHeightOrWidth(
         height: Int,
         width: Int,
         @IntRange(from = 0, to = DEFAULT_CORNER_SMOOTHING)
