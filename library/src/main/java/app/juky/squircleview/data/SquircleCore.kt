@@ -136,8 +136,13 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
     private fun loadDefaultStyle(context: Context, view: View, attrs: AttributeSet?) {
         if (view is SquircleButton || view is SquircleImageView || view is SquircleConstraintLayout) {
             val isButton = view is SquircleButton
-            view.isClickable = attrs?.getAttributeBooleanValue(android.R.attr.clickable, isButton) ?: isButton
-            view.isFocusable = attrs?.getAttributeBooleanValue(android.R.attr.focusable, isButton) ?: isButton
+
+            try {
+                view.isClickable = attrs?.getAttributeBooleanValue(android.R.attr.clickable, isButton) ?: isButton
+                view.isFocusable = attrs?.getAttributeBooleanValue(android.R.attr.focusable, isButton) ?: isButton
+            } catch (e: IndexOutOfBoundsException) {
+                // Android Studio preview fails when retrieving this value
+            }
 
             // Set ripple if enabled
             if (rippleEnabled && view.hasOnClickListeners()) {
