@@ -67,7 +67,7 @@ Also add the SquircleView dependency to your app build.gradle
 
 ```groovy
 dependencies {
-    implementation "app.juky:squircleview:0.5.0"
+    implementation "app.juky:squircleview:0.5.1"
 }
 ```
 
@@ -322,6 +322,8 @@ Check out the [CONTRIBUTING.md](CONTRIBUTING.md) file to know more
 
 ## Changelog
 
+- V0.5.1 (20 may 2022)
+    - Android Studio previews would fail due to issues with attributes
 - V0.5.0 (8 april 2022)
     - Updated Gradle, Kotlin and dependencies
     - Added Jetpack Compose Path components and paths
