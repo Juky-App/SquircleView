@@ -23,6 +23,14 @@ internal object SquircleGradient {
                 endColor = core.backgroundGradientEndColor,
                 drawable = core.backgroundGradientDrawable
             )
+            core.borderPaint.shader = getGradient(
+                view = view,
+                direction = core.borderGradientDirection,
+                startColor = core.borderGradientStartColor,
+                endColor = core.borderGradientEndColor,
+                drawable = core.borderGradientDrawable
+            )
+
             view.invalidate()
         }
     }

@@ -96,6 +96,9 @@
                 android:layout_height="72dp"
                 android:layout_margin="8dp"
                 android:padding="16dp"
+                app:squircle_border_width="10dp"
+                app:squircle_border_gradient_direction="top_left_to_bottom_right"
+                app:squircle_border_gradient_drawable="@drawable/gradient_second"
                 app:squircle_background_gradient_drawable="@drawable/gradient"
                 app:squircle_shadow_elevation="2dp">
 
@@ -119,8 +122,10 @@
                 android:padding="16dp"
                 app:squircle_background_gradient_end_color="#C739EF"
                 app:squircle_background_gradient_start_color="#E0ED24"
+                app:squircle_border_gradient_start_color="@color/teal_200"
+                app:squircle_border_gradient_end_color="@color/purple_700"
                 app:squircle_border_color="#AE553A"
-                app:squircle_border_width="8dp"
+                app:squircle_border_width="16dp"
                 app:squircle_shadow_elevation="2dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -216,7 +221,7 @@
                     app:squircle_background_gradient_drawable="@drawable/gradient"
                     app:squircle_background_image="@drawable/first_image"
                     app:squircle_border_color="@color/black"
-                    app:squircle_border_width="4dp"
+                    app:squircle_border_width="4dp" />
 
                 <app.juky.squircleview.views.SquircleButton
                     android:id="@+id/normalButtonWithImage"
@@ -231,7 +236,7 @@
                     app:squircle_background_gradient_start_color="#C6A116"
                     app:squircle_background_image="@drawable/third_image"
                     app:squircle_border_color="@color/white"
-                    app:squircle_border_width="4dp"
+                    app:squircle_border_width="4dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -249,7 +254,7 @@
                 app:squircle_background_gradient_end_color="#FF00FF"
                 app:squircle_background_gradient_start_color="#C6A116"
                 app:squircle_border_color="@color/white"
-                app:squircle_border_width="4dp"
+                app:squircle_border_width="4dp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

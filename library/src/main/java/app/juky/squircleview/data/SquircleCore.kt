@@ -51,6 +51,12 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
     var backgroundGradientDirection: GradientDirection
 
     @ColorInt var borderColor: Int
+
+    var borderGradientDrawable: GradientDrawable?
+    @ColorInt var borderGradientStartColor: Int
+    @ColorInt var borderGradientEndColor: Int
+    var borderGradientDirection: GradientDirection
+
     var borderWidth: Float
 
     var rippleEnabled: Boolean
@@ -78,7 +84,12 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
             backgroundGradientDirection = GradientDirection.values()[getInt(R.styleable.SquircleView_squircle_background_gradient_direction, GradientDirection.DEFAULT.ordinal)]
 
             borderColor = getColor(R.styleable.SquircleView_squircle_border_color, DEFAULT_COLOR_VALUE)
+            borderGradientDrawable = getDrawable(R.styleable.SquircleView_squircle_border_gradient_drawable) as? GradientDrawable
+            borderGradientStartColor = getColor(R.styleable.SquircleView_squircle_border_gradient_start_color, DEFAULT_COLOR_VALUE)
+            borderGradientEndColor = getColor(R.styleable.SquircleView_squircle_border_gradient_end_color, DEFAULT_COLOR_VALUE)
+            borderGradientDirection = GradientDirection.values()[getInt(R.styleable.SquircleView_squircle_border_gradient_direction, GradientDirection.DEFAULT.ordinal)]
             borderWidth = getDimension(R.styleable.SquircleView_squircle_border_width, 0f)
+
             rippleEnabled = getBoolean(R.styleable.SquircleView_squircle_ripple_enabled, view !is SquircleImageView)
             rippleDrawable = getDrawable(R.styleable.SquircleView_squircle_ripple_drawable)
             cornerSmoothing = getInteger(R.styleable.SquircleView_squircle_corner_smoothing_percentage, DEFAULT_CORNER_SMOOTHING.toInt())

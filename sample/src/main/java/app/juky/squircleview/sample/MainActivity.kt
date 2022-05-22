@@ -135,6 +135,12 @@ class MainActivity : AppCompatActivity() {
         // binding.normalButton.style.backgroundGradientDirection = GradientDirection.BOTTOM_TOP
         // binding.normalButton.style.borderColor = Color.CYAN
         // binding.normalButton.style.borderColorRes = R.color.purple_500
+        // binding.normalButton.style.borderGradientDrawable = ContextCompat.getDrawable(this, R.drawable.gradient_second) as? GradientDrawable
+        // binding.normalButton.style.borderGradientStartColor = Color.BLUE
+        // binding.normalButton.style.borderGradientStartColorRes = R.color.purple_500
+        // binding.normalButton.style.borderGradientEndColor = Color.YELLOW
+        // binding.normalButton.style.borderGradientEndColorRes = R.color.teal_700
+        // binding.normalButton.style.borderGradientDirection = GradientDirection.BOTTOM_TOP
         // binding.normalButton.style.borderWidth = 20f
         // binding.normalButton.style.rippleEnabled = false
         // binding.normalButton.style.rippleDrawable = ContextCompat.getDrawable(this, R.drawable.ripple)
@@ -143,6 +149,8 @@ class MainActivity : AppCompatActivity() {
         // binding.normalButton.style.setBackgroundImage(R.drawable.third_image)
         // binding.normalButton.style.setBackgroundGradientDrawable(R.drawable.gradient_second)
         // binding.normalButton.style.setBackgroundGradientDirection(200)
+        // binding.normalButton.style.setBorderGradientDrawable(R.drawable.gradient_second)
+        // binding.normalButton.style.setBorderGradientDirection(200)
     }
 
     private fun loadImageDrawable() {

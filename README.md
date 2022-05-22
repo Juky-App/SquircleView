@@ -173,6 +173,10 @@ files.
 | squircle_shadow_elevation                | dimension | Default of the super view          | Shadow elevation                                                   |
 | squircle_shadow_elevation_color          | color     | #42000000                          | Shadow elevation color                                             |
 | squircle_border_color                    | color     |                                    | Border color                                                       |
+| squircle_border_gradient_drawable        | reference |                                    | Border gradient drawable displayed in view                         |
+| squircle_border_gradient_start_color     | color     |                                    | Border gradient start color                                        |
+| squircle_border_gradient_end_color       | color     |                                    | Border gradient end color                                          |
+| squircle_border_gradient_direction       | enum      | TOP_LEFT_BOTTOM_RIGHT              | Direction of the border gradient (only for the color gradient)     |
 | squircle_border_width                    | dimension | 0                                  | Border width                                                       |
 | squircle_ripple_enabled                  | boolean   | true (false for SquircleImageView) | Ripple enabled or disabled (when a click listener is set)          |
 | squircle_ripple_drawable                 | reference | ?attr/selectableItemBackground     | Drawable used for drawing the ripple                               |
@@ -200,6 +204,12 @@ var backgroundGradientEndColorRes: Int
 var backgroundGradientDirection: GradientDirection
 var borderColor: Int
 var borderColorRes: Int
+var borderGradientDrawable: GradientDrawable?
+var borderGradientStartColor: Int
+var borderGradientStartColorRes: Int
+var borderGradientEndColor: Int
+var borderGradientEndColorRes: Int
+var borderGradientDirection: GradientDirection
 var borderWidth: Float
 var rippleEnabled: Boolean
 
@@ -209,6 +219,8 @@ fun setBackgroundImage(drawable: Drawable?)
 fun setBackgroundImage(resId: Int)
 fun setBackgroundGradientDrawable(resId: Int)
 fun setBackgroundGradientDirection(angle: Int)
+fun setBorderGradientDrawable(resId: Int)
+fun setBorderGradientDirection(angle: Int)
 
 
 fun getCornerSmoothing(): Int
@@ -279,11 +291,11 @@ implementation, which is called `SquircleCornerTreatment`.
 - [ ] Check Java support
 - [ ] Performance testing with lots of bitmaps
 - [ ] Add tests
-- [ ] Code documentation
+- [X] Code documentation
 - [ ] Option to determine text color by background / image
 - [ ] Use precise angle of gradient instead of matching it to a segment
 - [ ] Improve outer shadow boundaries
-- [ ] Jetpack compose support
+- [X] Jetpack compose support
 - [ ] Reduce `invalidate()` calls when changing multiple style properties
 
 ## Contributing
@@ -322,6 +334,12 @@ Check out the [CONTRIBUTING.md](CONTRIBUTING.md) file to know more
 
 ## Changelog
 
+- V0.6.0 (23 may 2022)
+    - Breaking change: 
+      Border gradients have been added, so existing gradient methods are now prefixed with `background_`
+      - Methods renamed: `gradientDrawable` to `backgroundGradientDrawable`, `gradientStartColor` to `backgroundGradientStartColor`, `gradientStartColorRes` to `backgroundGradientStartColorRes`, `gradientEndColor` to `backgroundGradientEndColor`, `gradientEndColorRes` to `backgroundGradientEndColorRes`, `gradientDirection` to `backgroundGradientDirection`
+      - Attributes renamed: `squircle_gradient_drawable` to `squircle_background_gradient_drawable`, `squircle_gradient_start_color` to `squircle_background_gradient_start_color`, `squircle_gradient_end_color` to `squircle_background_gradient_end_color`, `squircle_gradient_direction` to `squircle_background_gradient_direction`
+    - Added border gradient support
 - V0.5.1 (20 may 2022)
     - Android Studio previews would fail due to issues with attributes
 - V0.5.0 (8 april 2022)
@@ -363,7 +381,7 @@ library
 ```
 MIT License
 
-Copyright (c) 2021] Juky
+Copyright (c) 2021 Juky
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
