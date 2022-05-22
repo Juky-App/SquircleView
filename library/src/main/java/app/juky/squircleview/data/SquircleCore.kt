@@ -39,16 +39,16 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
 
     var squirclePath = Path()
 
-    var backgroundImage: Bitmap?
-    @ColorInt var backgroundColor: Int
-
     var shadowElevation: Float
     @ColorInt var shadowElevationColor: Int
 
-    var gradientDrawable: GradientDrawable?
-    @ColorInt var gradientStartColor: Int
-    @ColorInt var gradientEndColor: Int
-    var gradientDirection: GradientDirection
+    var backgroundImage: Bitmap?
+    @ColorInt var backgroundColor: Int
+
+    var backgroundGradientDrawable: GradientDrawable?
+    @ColorInt var backgroundGradientStartColor: Int
+    @ColorInt var backgroundGradientEndColor: Int
+    var backgroundGradientDirection: GradientDirection
 
     @ColorInt var borderColor: Int
     var borderWidth: Float
@@ -61,20 +61,22 @@ class SquircleCore(context: Context, attrs: AttributeSet?, view: View) {
 
     init {
         context.obtainStyledAttributes(attrs, R.styleable.SquircleView).apply {
-            backgroundImage = getDrawable(R.styleable.SquircleView_squircle_background_image)?.toBitmap()
-            backgroundColor = getColor(
-                R.styleable.SquircleView_squircle_background_color,
-                ContextCompat.getColor(context, android.R.color.black)
-            )
             shadowElevation = getDimension(R.styleable.SquircleView_squircle_shadow_elevation, view.elevation)
             shadowElevationColor = getColor(
                 R.styleable.SquircleView_squircle_shadow_elevation_color,
                 ContextCompat.getColor(context, R.color.squircle_default_shadow_color)
             )
-            gradientDrawable = getDrawable(R.styleable.SquircleView_squircle_gradient_drawable) as? GradientDrawable
-            gradientStartColor = getColor(R.styleable.SquircleView_squircle_gradient_start_color, DEFAULT_COLOR_VALUE)
-            gradientEndColor = getColor(R.styleable.SquircleView_squircle_gradient_end_color, DEFAULT_COLOR_VALUE)
-            gradientDirection = GradientDirection.values()[getInt(R.styleable.SquircleView_squircle_gradient_direction, GradientDirection.DEFAULT.ordinal)]
+
+            backgroundImage = getDrawable(R.styleable.SquircleView_squircle_background_image)?.toBitmap()
+            backgroundColor = getColor(
+                R.styleable.SquircleView_squircle_background_color,
+                ContextCompat.getColor(context, android.R.color.black)
+            )
+            backgroundGradientDrawable = getDrawable(R.styleable.SquircleView_squircle_background_gradient_drawable) as? GradientDrawable
+            backgroundGradientStartColor = getColor(R.styleable.SquircleView_squircle_background_gradient_start_color, DEFAULT_COLOR_VALUE)
+            backgroundGradientEndColor = getColor(R.styleable.SquircleView_squircle_background_gradient_end_color, DEFAULT_COLOR_VALUE)
+            backgroundGradientDirection = GradientDirection.values()[getInt(R.styleable.SquircleView_squircle_background_gradient_direction, GradientDirection.DEFAULT.ordinal)]
+
             borderColor = getColor(R.styleable.SquircleView_squircle_border_color, DEFAULT_COLOR_VALUE)
             borderWidth = getDimension(R.styleable.SquircleView_squircle_border_width, 0f)
             rippleEnabled = getBoolean(R.styleable.SquircleView_squircle_ripple_enabled, view !is SquircleImageView)

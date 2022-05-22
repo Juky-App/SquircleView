@@ -7,16 +7,16 @@
     <attr name="squircle_background_color" format="color" />
 
     <!-- Gradient drawable displayed in view -->
-    <attr name="squircle_gradient_drawable" format="reference" />
+    <attr name="squircle_background_gradient_drawable" format="reference" />
 
     <!-- Gradient start color -->
-    <attr name="squircle_gradient_start_color" format="color" />
+    <attr name="squircle_background_gradient_start_color" format="color" />
 
     <!-- Gradient end color -->
-    <attr name="squircle_gradient_end_color" format="color" />
+    <attr name="squircle_background_gradient_end_color" format="color" />
 
     <!-- Direction of the gradient (only for the color gradient) -->
-    <attr name="squircle_gradient_direction">
+    <attr name="squircle_background_gradient_direction">
         <enum name="top_to_bottom" value="0" />
         <enum name="top_right_to_bottom_left" value="1" />
         <enum name="right_to_left" value="2" />
@@ -52,10 +52,10 @@
     <declare-styleable name="SquircleView">
         <attr name="squircle_background_image" />
         <attr name="squircle_background_color" />
-        <attr name="squircle_gradient_drawable" />
-        <attr name="squircle_gradient_start_color" />
-        <attr name="squircle_gradient_end_color" />
-        <attr name="squircle_gradient_direction" />
+        <attr name="squircle_background_gradient_drawable" />
+        <attr name="squircle_background_gradient_start_color" />
+        <attr name="squircle_background_gradient_end_color" />
+        <attr name="squircle_background_gradient_direction" />
         <attr name="squircle_shadow_elevation" />
         <attr name="squircle_shadow_elevation_color" />
         <attr name="squircle_border_color" />
@@ -68,10 +68,10 @@
     <declare-styleable name="SquircleButton">
         <attr name="squircle_background_image" />
         <attr name="squircle_background_color" />
-        <attr name="squircle_gradient_drawable" />
-        <attr name="squircle_gradient_start_color" />
-        <attr name="squircle_gradient_end_color" />
-        <attr name="squircle_gradient_direction" />
+        <attr name="squircle_background_gradient_drawable" />
+        <attr name="squircle_background_gradient_start_color" />
+        <attr name="squircle_background_gradient_end_color" />
+        <attr name="squircle_background_gradient_direction" />
         <attr name="squircle_shadow_elevation" />
         <attr name="squircle_shadow_elevation_color" />
         <attr name="squircle_border_color" />
@@ -84,10 +84,10 @@
     <declare-styleable name="SquircleConstraintLayout">
         <attr name="squircle_background_image" />
         <attr name="squircle_background_color" />
-        <attr name="squircle_gradient_drawable" />
-        <attr name="squircle_gradient_start_color" />
-        <attr name="squircle_gradient_end_color" />
-        <attr name="squircle_gradient_direction" />
+        <attr name="squircle_background_gradient_drawable" />
+        <attr name="squircle_background_gradient_start_color" />
+        <attr name="squircle_background_gradient_end_color" />
+        <attr name="squircle_background_gradient_direction" />
         <attr name="squircle_shadow_elevation" />
         <attr name="squircle_shadow_elevation_color" />
         <attr name="squircle_border_color" />
@@ -100,10 +100,10 @@
     <declare-styleable name="SquircleImageView">
         <attr name="squircle_background_image" />
         <attr name="squircle_background_color" />
-        <attr name="squircle_gradient_drawable" />
-        <attr name="squircle_gradient_start_color" />
-        <attr name="squircle_gradient_end_color" />
-        <attr name="squircle_gradient_direction" />
+        <attr name="squircle_background_gradient_drawable" />
+        <attr name="squircle_background_gradient_start_color" />
+        <attr name="squircle_background_gradient_end_color" />
+        <attr name="squircle_background_gradient_direction" />
         <attr name="squircle_shadow_elevation" />
         <attr name="squircle_shadow_elevation_color" />
         <attr name="squircle_border_color" />

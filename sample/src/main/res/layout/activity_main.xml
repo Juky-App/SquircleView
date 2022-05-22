@@ -72,9 +72,9 @@
                 android:layout_height="72dp"
                 android:layout_margin="8dp"
                 android:padding="16dp"
+                app:squircle_background_gradient_end_color="#415FFF"
+                app:squircle_background_gradient_start_color="#5BA7FF"
                 app:squircle_corner_smoothing_percentage="40"
-                app:squircle_gradient_end_color="#415FFF"
-                app:squircle_gradient_start_color="#5BA7FF"
                 app:squircle_ripple_enabled="false"
                 app:squircle_shadow_elevation="2dp">
 
@@ -96,7 +96,7 @@
                 android:layout_height="72dp"
                 android:layout_margin="8dp"
                 android:padding="16dp"
-                app:squircle_gradient_drawable="@drawable/gradient"
+                app:squircle_background_gradient_drawable="@drawable/gradient"
                 app:squircle_shadow_elevation="2dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -117,10 +117,10 @@
                 android:layout_height="72dp"
                 android:layout_margin="8dp"
                 android:padding="16dp"
+                app:squircle_background_gradient_end_color="#C739EF"
+                app:squircle_background_gradient_start_color="#E0ED24"
                 app:squircle_border_color="#AE553A"
                 app:squircle_border_width="8dp"
-                app:squircle_gradient_end_color="#C739EF"
-                app:squircle_gradient_start_color="#E0ED24"
                 app:squircle_shadow_elevation="2dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -141,9 +141,9 @@
                 android:layout_height="72dp"
                 android:layout_margin="8dp"
                 android:padding="16dp"
-                app:squircle_gradient_direction="bottom_left_to_top_right"
-                app:squircle_gradient_end_color="#0EBA11"
-                app:squircle_gradient_start_color="#FFBB0D"
+                app:squircle_background_gradient_direction="bottom_left_to_top_right"
+                app:squircle_background_gradient_end_color="#0EBA11"
+                app:squircle_background_gradient_start_color="#FFBB0D"
                 app:squircle_shadow_elevation="0dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -172,8 +172,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/squircleRowLayout"
             app:squircle_background_color="@color/purple_200"
-            app:squircle_gradient_end_color="#415FFF"
-            app:squircle_gradient_start_color="#5BA7FF"
+            app:squircle_background_gradient_end_color="#415FFF"
+            app:squircle_background_gradient_start_color="#5BA7FF"
             app:squircle_shadow_elevation="2dp" />
 
         <app.juky.squircleview.views.SquircleButton
@@ -213,10 +213,10 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:squircle_background_color="@color/purple_200"
+                    app:squircle_background_gradient_drawable="@drawable/gradient"
                     app:squircle_background_image="@drawable/first_image"
                     app:squircle_border_color="@color/black"
                     app:squircle_border_width="4dp"
-                    app:squircle_gradient_drawable="@drawable/gradient" />
 
                 <app.juky.squircleview.views.SquircleButton
                     android:id="@+id/normalButtonWithImage"
@@ -227,11 +227,11 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/imageButton"
                     app:squircle_background_color="@color/purple_200"
+                    app:squircle_background_gradient_end_color="#FF00FF"
+                    app:squircle_background_gradient_start_color="#C6A116"
                     app:squircle_background_image="@drawable/third_image"
                     app:squircle_border_color="@color/white"
                     app:squircle_border_width="4dp"
-                    app:squircle_gradient_end_color="#FF00FF"
-                    app:squircle_gradient_start_color="#C6A116" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -245,11 +245,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/normalButtonWithImage"
+                app:squircle_background_gradient_direction="right_to_left"
+                app:squircle_background_gradient_end_color="#FF00FF"
+                app:squircle_background_gradient_start_color="#C6A116"
                 app:squircle_border_color="@color/white"
                 app:squircle_border_width="4dp"
-                app:squircle_gradient_direction="right_to_left"
-                app:squircle_gradient_end_color="#FF00FF"
-                app:squircle_gradient_start_color="#C6A116" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -104,8 +104,8 @@ This view extends the `AppCompatTextView`, which you can use to have a squircle 
 	android:padding="16dp"
 	android:text="Normal button"
 	android:textColor="#FFFFFF"
-	app:squircle_gradient_end_color="#415FFF"
-	app:squircle_gradient_start_color="#5BA7FF"
+	app:squircle_background_gradient_end_color="#415FFF"
+	app:squircle_background_gradient_start_color="#5BA7FF"
 	app:squircle_shadow_elevation="2dp"/>
 ```
 
@@ -120,8 +120,8 @@ complex layout with texts and icons.
 	android:layout_width="72dp"
 	android:layout_height="72dp"
 	android:padding="16dp"
-	app:squircle_gradient_end_color="#415FFF"
-	app:squircle_gradient_start_color="#5BA7FF"
+	app:squircle_background_gradient_end_color="#415FFF"
+	app:squircle_background_gradient_start_color="#5BA7FF"
 	app:squircle_shadow_elevation="2dp">
 
 	<!-- Embed whatever widget you would like, in this case an icon -->
@@ -162,21 +162,21 @@ Glide.with(this).load(R.drawable.my_image)
 The following attributes can be used in your styles.xml / themes.xml or as attribute of the view in your layout xml
 files.
 
-| Attribute                            | Type      | Default                            | Description                                                |
-|--------------------------------------|-----------|------------------------------------|------------------------------------------------------------|
-| squircle_background_image            | reference |                                    | Background image of view                                   |
-| squircle_background_color            | color     | #000000                            | Background color of view                                   |
-| squircle_gradient_drawable           | reference |                                    | Gradient drawable displayed in view                        |
-| squircle_gradient_start_color        | color     |                                    | Gradient start color                                       |
-| squircle_gradient_end_color          | color     |                                    | Gradient end color                                         |
-| squircle_gradient_direction          | enum      | TOP_LEFT_BOTTOM_RIGHT              | Direction of the gradient (only for the color gradient)    |
-| squircle_shadow_elevation            | dimension | Default of the super view          | Shadow elevation                                           |
-| squircle_shadow_elevation_color      | color     | #42000000                          | Shadow elevation color                                     |
-| squircle_border_color                | color     |                                    | Border color                                               |
-| squircle_border_width                | dimension | 0                                  | Border width                                               |
-| squircle_ripple_enabled              | boolean   | true (false for SquircleImageView) | Ripple enabled or disabled (when a click listener is set)  |
-| squircle_ripple_drawable             | reference | ?attr/selectableItemBackground     | Drawable used for drawing the ripple                       |
-| squircle_corner_smoothing_percentage | integer   | 100%                               | Change the corner smoothing, a Squircle is 100% by default |
+| Attribute                                | Type      | Default                            | Description                                                        |
+|------------------------------------------|-----------|------------------------------------|--------------------------------------------------------------------|
+| squircle_background_image                | reference |                                    | Background image of view                                           |
+| squircle_background_color                | color     | #000000                            | Background color of view                                           |
+| squircle_background_gradient_drawable    | reference |                                    | Background gradient drawable displayed in view                     |
+| squircle_background_gradient_start_color | color     |                                    | Background gradient start color                                    |
+| squircle_background_gradient_end_color   | color     |                                    | Background gradient end color                                      |
+| squircle_background_gradient_direction   | enum      | TOP_LEFT_BOTTOM_RIGHT              | Direction of the background gradient (only for the color gradient) |
+| squircle_shadow_elevation                | dimension | Default of the super view          | Shadow elevation                                                   |
+| squircle_shadow_elevation_color          | color     | #42000000                          | Shadow elevation color                                             |
+| squircle_border_color                    | color     |                                    | Border color                                                       |
+| squircle_border_width                    | dimension | 0                                  | Border width                                                       |
+| squircle_ripple_enabled                  | boolean   | true (false for SquircleImageView) | Ripple enabled or disabled (when a click listener is set)          |
+| squircle_ripple_drawable                 | reference | ?attr/selectableItemBackground     | Drawable used for drawing the ripple                               |
+| squircle_corner_smoothing_percentage     | integer   | 100%                               | Change the corner smoothing, a Squircle is 100% by default         |
 
 ### Methods
 
@@ -192,12 +192,12 @@ var backgroundColorRes: Int
 var shadowElevation: Float
 var shadowElevationColor: Int
 var shadowElevationColorRes: Int
-var gradientDrawable: GradientDrawable?
-var gradientStartColor: Int
-var gradientStartColorRes: Int
-var gradientEndColor: Int
-var gradientEndColorRes: Int
-var gradientDirection: GradientDirection
+var backgroundGradientDrawable: GradientDrawable?
+var backgroundGradientStartColor: Int
+var backgroundGradientStartColorRes: Int
+var backgroundGradientEndColor: Int
+var backgroundGradientEndColorRes: Int
+var backgroundGradientDirection: GradientDirection
 var borderColor: Int
 var borderColorRes: Int
 var borderWidth: Float
@@ -207,8 +207,8 @@ var rippleEnabled: Boolean
 fun setCornerSmoothing(cornerSmoothing: Int)
 fun setBackgroundImage(drawable: Drawable?)
 fun setBackgroundImage(resId: Int)
-fun setGradientDrawable(resId: Int)
-fun setGradientDirection(angle: Int)
+fun setBackgroundGradientDrawable(resId: Int)
+fun setBackgroundGradientDirection(angle: Int)
 
 
 fun getCornerSmoothing(): Int

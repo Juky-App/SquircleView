@@ -127,12 +127,12 @@ class MainActivity : AppCompatActivity() {
         // binding.normalButton.style.shadowElevation = 8f
         // binding.normalButton.style.shadowElevationColor = Color.GREEN
         // binding.normalButton.style.shadowElevationColorRes = R.color.teal_200
-        // binding.normalButton.style.gradientDrawable = ContextCompat.getDrawable(this, R.drawable.gradient_second) as? GradientDrawable
-        // binding.normalButton.style.gradientStartColor = Color.BLUE
-        // binding.normalButton.style.gradientStartColorRes = R.color.purple_500
-        // binding.normalButton.style.gradientEndColor = Color.YELLOW
-        // binding.normalButton.style.gradientEndColorRes = R.color.teal_700
-        // binding.normalButton.style.gradientDirection = GradientDirection.BOTTOM_TOP
+        // binding.normalButton.style.backgroundGradientDrawable = ContextCompat.getDrawable(this, R.drawable.gradient_second) as? GradientDrawable
+        // binding.normalButton.style.backgroundGradientStartColor = Color.BLUE
+        // binding.normalButton.style.backgroundGradientStartColorRes = R.color.purple_500
+        // binding.normalButton.style.backgroundGradientEndColor = Color.YELLOW
+        // binding.normalButton.style.backgroundGradientEndColorRes = R.color.teal_700
+        // binding.normalButton.style.backgroundGradientDirection = GradientDirection.BOTTOM_TOP
         // binding.normalButton.style.borderColor = Color.CYAN
         // binding.normalButton.style.borderColorRes = R.color.purple_500
         // binding.normalButton.style.borderWidth = 20f
@@ -141,8 +141,8 @@ class MainActivity : AppCompatActivity() {
 
         // binding.normalButton.style.setBackgroundImage(ContextCompat.getDrawable(this, R.drawable.second_image))
         // binding.normalButton.style.setBackgroundImage(R.drawable.third_image)
-        // binding.normalButton.style.setGradientDrawable(R.drawable.gradient_second)
-        // binding.normalButton.style.setGradientDirection(200)
+        // binding.normalButton.style.setBackgroundGradientDrawable(R.drawable.gradient_second)
+        // binding.normalButton.style.setBackgroundGradientDirection(200)
     }
 
     private fun loadImageDrawable() {
