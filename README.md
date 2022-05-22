@@ -67,7 +67,7 @@ Also add the SquircleView dependency to your app build.gradle
 
 ```groovy
 dependencies {
-    implementation "app.juky:squircleview:0.5.1"
+    implementation "app.juky:squircleview:0.6.0"
 }
 ```
 
