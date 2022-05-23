@@ -25,36 +25,6 @@ import app.juky.squircleview.utils.getTransparentRippleDrawable
  */
 class SquircleStyle(val context: Context, val view: View, internal val core: SquircleCore) {
     /**
-     * Set the background image
-     */
-    var backgroundImage: Bitmap?
-        get() = core.backgroundImage
-        set(value) {
-            core.backgroundImage = value
-            view.invalidate()
-        }
-
-    /**
-     * Set the background color by color int
-     */
-    var backgroundColor: Int
-        get() = core.backgroundColor
-        set(@ColorInt color) {
-            core.backgroundColor = color
-            core.shapePaint.color = core.backgroundColor
-            view.invalidate()
-        }
-
-    /**
-     * Set the background color by resource id
-     */
-    var backgroundColorRes: Int
-        get() = core.backgroundColor
-        set(@ColorRes resId) {
-            backgroundColor = ContextCompat.getColor(view.context, resId)
-        }
-
-    /**
      * Set the elevation of the shadow
      */
     var shadowElevation: Float
@@ -90,6 +60,37 @@ class SquircleStyle(val context: Context, val view: View, internal val core: Squ
         set(@ColorRes resId) {
             shadowElevationColor = ContextCompat.getColor(view.context, resId)
         }
+    
+
+    /**
+     * Set the background image
+     */
+    var backgroundImage: Bitmap?
+        get() = core.backgroundImage
+        set(value) {
+            core.backgroundImage = value
+            view.invalidate()
+        }
+
+    /**
+     * Set the background color by color int
+     */
+    var backgroundColor: Int
+        get() = core.backgroundColor
+        set(@ColorInt color) {
+            core.backgroundColor = color
+            core.shapePaint.color = core.backgroundColor
+            view.invalidate()
+        }
+
+    /**
+     * Set the background color by resource id
+     */
+    var backgroundColorRes: Int
+        get() = core.backgroundColor
+        set(@ColorRes resId) {
+            backgroundColor = ContextCompat.getColor(view.context, resId)
+        }
 
     /**
      * Set a drawable gradient as background. Note: Currently, only Gradient Drawables which have
@@ -105,60 +106,60 @@ class SquircleStyle(val context: Context, val view: View, internal val core: Squ
      * </shape>
      * ```
      */
-    var gradientDrawable: GradientDrawable?
-        get() = core.gradientDrawable
+    var backgroundGradientDrawable: GradientDrawable?
+        get() = core.backgroundGradientDrawable
         set(drawable) {
-            core.gradientDrawable = drawable
+            core.backgroundGradientDrawable = drawable
             view.invalidate()
         }
 
     /**
-     * Set the gradient start color by color int
+     * Set the background gradient start color by color int
      */
-    var gradientStartColor: Int
-        get() = core.gradientStartColor
+    var backgroundGradientStartColor: Int
+        get() = core.backgroundGradientStartColor
         set(@ColorInt color) {
-            core.gradientStartColor = color
+            core.backgroundGradientStartColor = color
             view.invalidate()
         }
 
     /**
-     * Set the gradient start color by resource ID. Note: this CANNOT be an android.R.color.* value, because
+     * Set the background gradient start color by resource ID. Note: this CANNOT be an android.R.color.* value, because
      * it won't work with a LinearGradient.
      */
-    var gradientStartColorRes: Int
-        get() = core.gradientStartColor
+    var backgroundGradientStartColorRes: Int
+        get() = core.backgroundGradientStartColor
         set(@ColorRes resId) {
-            gradientStartColor = ContextCompat.getColor(view.context, resId)
+            backgroundGradientStartColor = ContextCompat.getColor(view.context, resId)
         }
 
     /**
-     * Set the gradient end color by color int
+     * Set the background gradient end color by color int
      */
-    var gradientEndColor: Int
-        get() = core.gradientEndColor
+    var backgroundGradientEndColor: Int
+        get() = core.backgroundGradientEndColor
         set(@ColorInt color) {
-            core.gradientEndColor = color
+            core.backgroundGradientEndColor = color
             view.invalidate()
         }
 
     /**
-     * Set the gradient end color by resource ID. Note: this CANNOT be an android.R.color.* value, because
+     * Set the background gradient end color by resource ID. Note: this CANNOT be an android.R.color.* value, because
      * it won't work with a LinearGradient.
      */
-    var gradientEndColorRes: Int
-        get() = core.gradientEndColor
+    var backgroundGradientEndColorRes: Int
+        get() = core.backgroundGradientEndColor
         set(@ColorRes resId) {
-            gradientEndColor = ContextCompat.getColor(view.context, resId)
+            backgroundGradientEndColor = ContextCompat.getColor(view.context, resId)
         }
 
     /**
-     * Set the gradient direction using a GradientDirection
+     * Set the background gradient direction using a GradientDirection
      */
-    var gradientDirection: GradientDirection
-        get() = core.gradientDirection
+    var backgroundGradientDirection: GradientDirection
+        get() = core.backgroundGradientDirection
         set(direction) {
-            core.gradientDirection = direction
+            core.backgroundGradientDirection = direction
             SquircleGradient.onViewSizeChanged(view.width, view.height, view, core)
         }
 
@@ -184,6 +185,78 @@ class SquircleStyle(val context: Context, val view: View, internal val core: Squ
         get() = core.borderColor
         set(@ColorRes resId) {
             borderColor = ContextCompat.getColor(view.context, resId)
+        }
+
+
+    /**
+     * Set a drawable gradient as border background. Note: Currently, only Gradient Drawables which have
+     * a shape around it are supported, though you could just use a shape without specifying anything.
+     *
+     * ```
+     * <?xml version="1.0" encoding="utf-8"?>
+     * <shape xmlns:android="http://schemas.android.com/apk/res/android">
+     *     <gradient
+     *         android:endColor="#EC5396"
+     *         android:startColor="#FFCB71"
+     *         android:type="linear" />
+     * </shape>
+     * ```
+     */
+    var borderGradientDrawable: GradientDrawable?
+        get() = core.borderGradientDrawable
+        set(drawable) {
+            core.borderGradientDrawable = drawable
+            view.invalidate()
+        }
+
+    /**
+     * Set the border gradient start color by color int
+     */
+    var borderGradientStartColor: Int
+        get() = core.borderGradientStartColor
+        set(@ColorInt color) {
+            core.borderGradientStartColor = color
+            view.invalidate()
+        }
+
+    /**
+     * Set the border gradient start color by resource ID. Note: this CANNOT be an android.R.color.* value, because
+     * it won't work with a LinearGradient.
+     */
+    var borderGradientStartColorRes: Int
+        get() = core.borderGradientStartColor
+        set(@ColorRes resId) {
+            borderGradientStartColor = ContextCompat.getColor(view.context, resId)
+        }
+
+    /**
+     * Set the border gradient end color by color int
+     */
+    var borderGradientEndColor: Int
+        get() = core.borderGradientEndColor
+        set(@ColorInt color) {
+            core.borderGradientEndColor = color
+            view.invalidate()
+        }
+
+    /**
+     * Set the border gradient end color by resource ID. Note: this CANNOT be an android.R.color.* value, because
+     * it won't work with a LinearGradient.
+     */
+    var borderGradientEndColorRes: Int
+        get() = core.borderGradientEndColor
+        set(@ColorRes resId) {
+            borderGradientEndColor = ContextCompat.getColor(view.context, resId)
+        }
+
+    /**
+     * Set the border gradient direction using a GradientDirection
+     */
+    var borderGradientDirection: GradientDirection
+        get() = core.borderGradientDirection
+        set(direction) {
+            core.borderGradientDirection = direction
+            SquircleGradient.onViewSizeChanged(view.width, view.height, view, core)
         }
 
     /**
@@ -287,8 +360,8 @@ class SquircleStyle(val context: Context, val view: View, internal val core: Squ
      * ```
      * @param resId Int Resource id of gradient
      */
-    fun setGradientDrawable(@DrawableRes resId: Int) {
-        core.gradientDrawable = ContextCompat.getDrawable(context, resId) as? GradientDrawable
+    fun setBackgroundGradientDrawable(@DrawableRes resId: Int) {
+        core.backgroundGradientDrawable = ContextCompat.getDrawable(context, resId) as? GradientDrawable
         view.invalidate()
     }
 
@@ -297,8 +370,38 @@ class SquircleStyle(val context: Context, val view: View, internal val core: Squ
      *
      * @param angle Int Angle from 0 to 360 degrees
      */
-    fun setGradientDirection(angle: Int) {
-        core.gradientDirection = GradientDirection.getByAngle(angle)
+    fun setBackgroundGradientDirection(angle: Int) {
+        core.backgroundGradientDirection = GradientDirection.getByAngle(angle)
+        SquircleGradient.onViewSizeChanged(view.width, view.height, view, core)
+    }
+
+    /**
+     * Set the gradient as border using a gradient resource id. Note: Currently, only Gradient Drawables which have
+     * a shape around it are supported, though you could just use a shape without specifying anything.
+     *
+     * ```
+     * <?xml version="1.0" encoding="utf-8"?>
+     * <shape xmlns:android="http://schemas.android.com/apk/res/android">
+     *     <gradient
+     *         android:endColor="#EC5396"
+     *         android:startColor="#FFCB71"
+     *         android:type="linear" />
+     * </shape>
+     * ```
+     * @param resId Int Resource id of gradient
+     */
+    fun setBorderGradientDrawable(@DrawableRes resId: Int) {
+        core.borderGradientDrawable = ContextCompat.getDrawable(context, resId) as? GradientDrawable
+        view.invalidate()
+    }
+
+    /**
+     * Set the gradient direction using an angle from 0 to 360
+     *
+     * @param angle Int Angle from 0 to 360 degrees
+     */
+    fun setBorderGradientDirection(angle: Int) {
+        core.borderGradientDirection = GradientDirection.getByAngle(angle)
         SquircleGradient.onViewSizeChanged(view.width, view.height, view, core)
     }
 
