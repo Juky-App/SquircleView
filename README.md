@@ -67,7 +67,7 @@ Also add the SquircleView dependency to your app build.gradle
 
 ```groovy
 dependencies {
-    implementation "app.juky:squircleview:0.6.0"
+    implementation "app.juky:squircleview:0.6.1"
 }
 ```
 
@@ -334,6 +334,8 @@ Check out the [CONTRIBUTING.md](CONTRIBUTING.md) file to know more
 
 ## Changelog
 
+- V0.6.0 (23 may 2022)
+  - Fixed issue #20 where ComposeShape was incorrectly calculating the top left corner, thanks @imnithish for finding this issue
 - V0.6.0 (23 may 2022)
     - Breaking change: 
       Border gradients have been added, so existing gradient methods are now prefixed with `background_`
