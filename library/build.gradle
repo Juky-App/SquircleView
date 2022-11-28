@@ -42,7 +42,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 32
         versionCode 1
-        versionName "0.6.0"
+        versionName "0.6.1"
         project.archivesBaseName = "SquircleView"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }

@@ -42,7 +42,7 @@ object SquircleComposeShape {
 
         val path = Path()
 
-        path.moveTo(x = startX, y = (height / 2).toFloat())
+        path.moveTo(x = startX, y = startY + radius)
 
         // Top left corner
         path.cubicTo(
